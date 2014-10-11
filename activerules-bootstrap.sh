@@ -31,10 +31,8 @@ then
 
     # Change to the webroot and install the application dependencies
     npm install --prefix /vagrant/www/default /vagrant/www/default
-    #(cd /vagrant/www/default && npm install)
 
     # Install the 
-    #(cd /vag/www/default && grunt init:dev)
     grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js init:dev
 
     # Run a little cleanup
@@ -43,9 +41,16 @@ then
     # Symlink our host www to the guest /var/www folder
     ln -s /vagrant/www /var/www
 
-    # Victory!
-    echo "VM created successfully! You can start your default node server listening on http://192.168.33.44:3300/. For code, see: ar-vagrant-ubuntu14-node/www/default/server.js."
+    # Success!
+    echo "VM created successfully! For code, see: ar-vagrant-ubuntu14-node/www/default/server.js."
+    echo "It is recommended to start the server in an interactive shell."
+    echo "In the project root where the Vagrantfile is located type the following to open a shell on the VM"
+    echo "vagrant ssh"
+    echo "Then start the server using this command:"
+    echo "grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js server"
+    echo "To restart the service type from the shell:"
+    echo "rs"
 
     # Run it
-    grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js server
+    # grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js server
 fi
