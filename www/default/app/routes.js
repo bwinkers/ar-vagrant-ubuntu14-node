@@ -6,6 +6,11 @@ module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
 		res.render('index.ejs');
 	});
+        
+        // show the home page (will also have our login links)
+	app.get('/auth', function(req, res) {
+		res.render('layout', { title: 'The index page!' })
+	});
 
 	// PROFILE SECTION =========================
 	app.get('/profile', isLoggedIn, function(req, res) {
