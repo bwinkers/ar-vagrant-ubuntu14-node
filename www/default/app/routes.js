@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
         
         // show the home page (will also have our login links)
 	app.get('/auth', function(req, res) {
-		res.render('layout', { title: 'The index page!' })
+		res.render('index.ejs')
 	});
 
 	// PROFILE SECTION =========================
