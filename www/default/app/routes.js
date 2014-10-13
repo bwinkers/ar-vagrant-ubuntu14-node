@@ -1,4 +1,8 @@
 module.exports = function(app, passport) {
+    
+    if(app.settings.env == 'development') {
+        console.log('The Routes know the enviro');
+    }
 
 // normal routes ===============================================================
 
@@ -8,8 +12,22 @@ module.exports = function(app, passport) {
 	});
         
         // show the home page (will also have our login links)
+	app.get('/account', isLoggedIn, function(req, res) {
+		res.render('account.ejs');
+	});
+        
+        // show the home page (will also have our login links)
+	app.get('/account/auths', isLoggedIn, function(req, res) {
+                //res.render('account/auths.handlebars', {
+                res.render('account/auths.hbs', {
+			user : req.user,
+                        title : 'Authentication Options'
+		});
+	});
+        
+        // show the auth options page
 	app.get('/auth', function(req, res) {
-		res.render('index.ejs')
+		res.render('auth.ejs');
 	});
 
 	// PROFILE SECTION =========================
@@ -38,7 +56,7 @@ module.exports = function(app, passport) {
 
 		// process the login form
 		app.post('/login', passport.authenticate('local-login', {
-			successRedirect : '/profile', // redirect to the secure profile section
+			successRedirect : '/account/auths', // redirect to the secure profile section
 			failureRedirect : '/login', // redirect back to the signup page if there is an error
 			failureFlash : true // allow flash messages
 		}));
@@ -196,5 +214,5 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	res.redirect('/');
+	res.redirect('/auth');
 }
