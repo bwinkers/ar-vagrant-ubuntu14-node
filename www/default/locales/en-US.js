@@ -7,5 +7,5 @@
         "lastname": "Winkers"
     },
     "copyright": "2014 &copy; all rights reserved",
-    "Hello": "Howdy Ho!"
+    "Hello": "Howdy Hotshot!"
 }

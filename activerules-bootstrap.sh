@@ -21,7 +21,7 @@ then
     apt-get install -y mongodb-10gen
 
     # Add nodejs repo
-    curl -sL https://deb.nodesource.com/setup | bash -
+    curl -sL https://deb.nodesource.com/setup | sudo bash -
 
     # Install nodejs and npm 
     apt-get install -y nodejs 
@@ -36,18 +36,22 @@ then
     grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js init:dev
 
     # Run a little cleanup
-    apt-get autoremove
+    apt-get -y autoremove
 
     # Symlink our host www to the guest /var/www folder
     ln -s /vagrant/www /var/www
 
     # Success!
     echo "VM created successfully! For code, see: ar-vagrant-ubuntu14-node/www/default/server.js."
+    echo ""
     echo "It is recommended to start the server in an interactive shell."
+    echo ""
     echo "In the project root where the Vagrantfile is located type the following to open a shell on the VM"
     echo "vagrant ssh"
+    echo ""
     echo "Then start the server using this command:"
     echo "grunt --base /vagrant/www/default --gruntfile /vagrant/www/default/Gruntfile.js server"
+    echo ""
     echo "To restart the service type from the shell:"
     echo "rs"
 

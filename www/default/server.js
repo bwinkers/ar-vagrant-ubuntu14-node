@@ -54,17 +54,8 @@ return i18n.__.apply(this, arguments);
 hbs.registerHelper('__n', function () {
 return i18n.__n.apply(this, arguments);
 });
-//app.use(i18n.abide({
-//  supported_languages: ['en-US', 'es-US'],
-//  default_lang: 'en-US',
-//  debug_lang: 'en-US',
-//  translation_directory: 'locales'
-//}));
 
 // Templating engine ===========================================================
-// EJS
-//app.set('view engine', 'ejs'); // set up ejs for templating
-
 // HBS
 app.set('views', __dirname + '/views');
 app.engine('hbs', hbs.express3({
@@ -75,13 +66,6 @@ app.engine('hbs', hbs.express3({
   i18n: i18n,  // registers __ and __n helpers
 }));
 app.set('view engine', 'hbs');
-
-// Express Handlebars
-//app.engine('handlebars', exphbs({
-//    defaultLayout: 'main',
-//    layoutsDir: app.get('views') + '/layouts'
-//}));
-//app.set('view engine', 'handlebars');
 
 // Passport Authentication =====================================================
 require('./config/passport')(passport, app); // pass passport for configuration
