@@ -42,7 +42,8 @@ i18n.configure({
     locales: ['en-US', 'es-US'],
     defaultLocale: 'en-US',
     cookie: 'locale',
-    directory: "" + __dirname + "/locales"
+    directory: "" + __dirname + "/locales",
+    objectNotation: true
 });
 // init i18n module for this loop
 app.use(i18n.init);
@@ -75,7 +76,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// Routes ======================================================================
+// Routes and File Handling ====================================================
 // Serve anything in the /public directory statically 
 app.use('/', express.static(path.join(__dirname, 'public')));
 // load our routes and pass in our app and fully configured passport

@@ -8,7 +8,9 @@ module.exports = function(app, passport) {
 
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
-		res.render('index.ejs');
+		res.render('home.hbs', {
+                        title : res.__('home_pagetitle')
+		});
 	});
         
         // show the home page (will also have our login links)
@@ -18,7 +20,6 @@ module.exports = function(app, passport) {
         
         // show the home page (will also have our login links)
 	app.get('/account/auths', isLoggedIn, function(req, res) {
-                //res.render('account/auths.handlebars', {
                 res.render('account/auths.hbs', {
 			user : req.user,
                         title : 'Authentication Options'
