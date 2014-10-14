@@ -11,7 +11,6 @@ var flash           = require('connect-flash');
 var bodyParser      = require('body-parser');
 var session         = require('express-session');
 var path            = require('path');
-var exphbs          = require('express-handlebars');
 var hbs             = require('express-hbs');
 var i18n            = require("i18n");
 
