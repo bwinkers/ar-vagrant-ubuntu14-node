@@ -59,8 +59,8 @@ return i18n.__n.apply(this, arguments);
 // HBS
 app.set('views', __dirname + '/views');
 app.engine('hbs', hbs.express3({
-  defaultLayout:  __dirname + '/views/layouts/main',
-  layout:false,
+  defaultLayout:  app.get('views') + '/layouts/main',
+  //layout:false,
   partialsDir: app.get('views') + '/partials',
   layoutsDir: app.get('views') + '/layouts',
   i18n: i18n,  // registers __ and __n helpers
@@ -80,7 +80,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // Serve anything in the /public directory statically 
 app.use('/', express.static(path.join(__dirname, 'public')));
 // load our routes and pass in our app and fully configured passport
-require('./app/routes.js')(app, passport); 
+require(__dirname + '/app/routes.js')(app, passport); 
 
 // Launch ======================================================================
 app.listen(port);

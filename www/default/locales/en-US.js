@@ -1,5 +1,5 @@
 {
-	"home_pagetitle": "Welcome to our site",
+	"home_pagetitle": "Welcome to our site %s",
 	"app": {
 		"name": "app.name"
 	},
@@ -12,6 +12,38 @@
 	"greeting": {
 		"placeholder": {
 			"informal": "Hi %s"
+		}
+	},
+	"home": {
+		"html": {
+			"title": "Welcome to our website!"
+		}
+	},
+	"auth": {
+		"login": {
+			"html": {
+				"title": "Login"
+			}
+		},
+		"html": {
+			"title": "Login Options"
+		}
+	},
+	"account": {
+		"home": {
+			"html": {
+				"title": "Account"
+			}
+		}
+	},
+	"login": {
+		"html": {
+			"title": "Login"
+		}
+	},
+	"signup": {
+		"html": {
+			"title": "signup.html.title"
 		}
 	}
 }
