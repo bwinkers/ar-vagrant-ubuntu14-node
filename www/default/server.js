@@ -19,7 +19,46 @@ var sitesRoot        = __dirname + '/site/';
 // Create the Default Express Application
 // This extends a connect class. It can do anything connect can.
 // =============================================================================
-    var izzup      = express();
+var izzup = initSite('izzup')
+
+
+// =============================================================================
+// =============================================================================
+// ActiveRules app to server all the vhosts.
+// This is the app that actually listens for incoming connections.
+// It uses the vhost module to send request for a particular hostname to the proper app.
+// Any valid express app should be able to bve used as a vhost, just make sure it has a unique name. (not app)
+// =============================================================================
+// =============================================================================
+
+// Set the port the Node.js server will listen on to 808 if not defined
+// Define it in the Gruntfile used to start the app
+var port     = process.env.PORT || 8080;
+
+// The Vhost server Express app
+var ar = express();
+
+// Load the Izzup domains into the default app
+ar.use(vhost('dev.izzup.com', izzup));
+
+// Launch ActiveRules ==========================================================
+ar.listen(port);
+console.log('The server has started on port ' + port);
+
+
+// =============================================================================
+// =============================================================================
+// Utility Functions
+// =============================================================================
+// =============================================================================
+
+/**
+ * 
+ * @param string siteAlias
+ * @returns express object with localized site content
+ */
+function initSite(siteAlias) {
+    izzup      = express();
     
     // Set the app site root for locating site specific files
     izzup.set('siteRoot', sitesRoot + 'izzup/');
@@ -92,27 +131,6 @@ var sitesRoot        = __dirname + '/site/';
     izzup.use('/', express.static(path.join(izzup.get('siteRoot'), 'public')));
     // load our routes and pass in our app and fully configured passport
     require(izzup.get('siteRoot') + 'config/routes.js')(izzup, izzuppassport); 
-
-
-// =============================================================================
-// =============================================================================
-// ActiveRules app to server all the vhosts.
-// This is the app that actually listens for incoming connections.
-// It uses the vhost module to send request for a particular hostname to the proper app.
-// Any valid express app should be able to bve used as a vhost, just make sure it has a unique name. (not app)
-// =============================================================================
-// =============================================================================
-
-// Set the port the Node.js server will listen on to 808 if not defined
-// Define it in the Gruntfile used to start the app
-var port     = process.env.PORT || 8080;
-
-// The Vhost server Express app
-var ar = express();
-
-// Load the Izzup domains into the default app
-ar.use(vhost('dev.izzup.com', izzup));
-
-// Launch ActiveRules ==========================================================
-ar.listen(port);
-console.log('The server has started on port ' + port);
+    
+    return izzup;
+}
