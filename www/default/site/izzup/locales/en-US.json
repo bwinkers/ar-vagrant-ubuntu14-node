@@ -1,0 +1,38 @@
+{
+	"auth": {
+		"html": {
+			"title": "Login or Signup"
+		}
+	},
+	"login": {
+		"html": {
+			"title": "Login"
+		}
+	},
+	"home": {
+		"html": {
+			"title": "Welcome"
+		}
+	},
+	"Hello": "Hello",
+	"app": {
+		"name": "Izzup"
+	},
+	"greeting": {
+		"placeholder": {
+			"informal": "Hi %s"
+		}
+	},
+	"signup": {
+		"html": {
+			"title": "signup.html.title"
+		}
+	},
+	"account": {
+		"home": {
+			"html": {
+				"title": "account.home.html.title"
+			}
+		}
+	}
+}
