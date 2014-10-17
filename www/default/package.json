@@ -41,7 +41,8 @@
     "passport-oauth2-jwt-bearer": "^0.1.1",
     "passport-twitter": "^1.0.2",
     "q": "^1.0.1",
-    "serve-favicon": "^2.1.5"
+    "serve-favicon": "^2.1.5",
+    "vhost": "^3.0.0"
   },
   "devDependencies": {
     "bower": "~1.2.8",
