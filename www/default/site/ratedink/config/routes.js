@@ -9,8 +9,7 @@ module.exports = function(app, passport) {
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
 		res.render('home', {
-                        //title : res.__('home.html.title')
-                        title : res.__('Izzup')
+                        title : res.__('home.html.title')
 		});
 	});
             
@@ -39,8 +38,8 @@ module.exports = function(app, passport) {
 	// PROFILE SECTION =========================
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
-			user : req.user	
-	});
+			user : req.user
+		});
 	});
 
 	// LOGOUT ==============================
