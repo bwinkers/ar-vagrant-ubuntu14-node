@@ -9,14 +9,14 @@ module.exports = function(app, passport) {
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
 		res.render('home', {
-                        title : res.__('home.html.title')
+                        title : req.i18n.__('home.html.title')
 		});
 	});
             
         // show the home page (will also have our login links)
 	app.get('/account', isLoggedIn, function(req, res) {
 		res.render('account/home', {
-                        title : res.__('account.home.html.title')
+                        title : req.i18n.__('account.home.html.title')
 		});
 	});
         
@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
         // show the auth options page
 	app.get('/auth', function(req, res) {
                 res.render('auth/options', {
-                        title : res.__('auth.html.title')
+                        title : req.i18n.__('auth.html.title')
 		});
 	});
 
@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
 		// show the login form
 		app.get('/login', function(req, res) {
                         res.render('auth/login', {
-                        title : res.__('login.html.title', 'Login'),
+                        title : req.i18n.__('login.html.title', 'Login'),
                         message: req.flash('loginMessage'),
                         failureFlash : true // allow flash messages
                     });
@@ -74,7 +74,7 @@ module.exports = function(app, passport) {
 		// show the signup form
 		app.get('/signup', function(req, res) {
                         res.render('signup/signup', {
-                        title : res.__('signup.html.title', 'Join'),
+                        title : req.i18n.__('signup.html.title', 'Join'),
                         message: req.flash('signupMessage'),
                         failureFlash : true // allow flash messages
                     });

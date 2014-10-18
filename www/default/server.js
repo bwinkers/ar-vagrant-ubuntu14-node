@@ -12,6 +12,7 @@ var flash           = require('connect-flash');     // Pass flash (one-time) mes
 var vhost           = require('vhost');             // Vhost support
 var hbs             = require('express-hbs');       // Handlebars wrapper
 var mongoose        = require('mongoose');          // Mongo database model/schema 
+var i18n            = require("i18n-2");              // Internationaliztion
 
 // ActiveRules Site Root =======================================================
 // This is used by initSite as the base directory for site 
@@ -79,7 +80,7 @@ function initSite(siteAlias) {
     // Load the DB config, pass in the app to use the environment and other settings.
     dbConfig    = require(app.get('siteRoot') + 'config/database.js');
     // Connect to the Database using the config url
-    var db = mongoose.createConnection(dbConfig.url); // connect to our database
+    db = mongoose.createConnection(dbConfig.url); // connect to our database
 
     // Basic ===================================================================
     app.use(morgan('dev')); // log every request to the console
@@ -92,23 +93,25 @@ function initSite(siteAlias) {
     localhbs = hbs.create();
 
     // i18n ====================================================================
-    i18n = require("i18n");  // Internationaliztion
-    i18n.configure({
+    i18nConfig = {
         locales: ['en-US', 'es-US'],
         defaultLocale: 'en-US',
         cookie: 'locale',
         directory: "" + app.get('siteRoot') + "locales",
         objectNotation: true
-    });
+    };
+    
+    i18n.expressBind(app, i18nConfig);
+    
     // init i18n module for this loop
-    app.use(i18n.init);
+    // app.use(i18n.init);
     // register hbs helpers in res.locals' context which provides this.locale
-    localhbs.registerHelper('__', function () {
-    return i18n.__.apply(this, arguments);
-    });
-    localhbs.registerHelper('__n', function () {
-    return i18n.__n.apply(this, arguments);
-    });
+    //localhbs.registerHelper('__', function () {
+    //return i18n.__.apply(this, arguments);
+   // });
+   // localhbs.registerHelper('__n', function () {
+   // return i18n.__n.apply(this, arguments);
+   // });
 
     // Templating engine =======================================================
     // HBS - Handlebars with blocks and i18n
@@ -118,8 +121,8 @@ function initSite(siteAlias) {
       defaultLayout:  app.get('views') + '/layouts/main',
       //layout:false,
       partialsDir: app.get('views') + '/partials',
-      layoutsDir: app.get('views') + '/layouts',
-      i18n: i18n,  // registers __ and __n helpers
+      layoutsDir: app.get('views') + '/layouts'
+      // i18n: i18n,  // registers __ and __n helpers
     }));
     app.set('view engine', 'hbs');
 
