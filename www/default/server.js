@@ -22,8 +22,9 @@ var sitesRoot        = __dirname + '/site/';
 // These map sites to customized content and routing.
 // The string passed to initSite must match a directory within the sitesRoot above.
 // =============================================================================
-var izzup = initSite('izzup');
 var ratedink = initSite('ratedink');
+var izzup = initSite('izzup');
+
 
 // =============================================================================
 // Define the ActiveRules app used to server all the vhosts.
@@ -42,6 +43,7 @@ var ar = express();
 // Send requests for the izzup domains to the izzup app.
 ar.use(vhost('local.izzup.com', izzup));
 ar.use(vhost('local.rated.ink', ratedink));
+ar.use(vhost('dev.izzup.com', izzup));
 
 // Launch ActiveRules ==========================================================
 ar.listen(port);
@@ -75,9 +77,9 @@ function initSite(siteAlias) {
 
     // Database ================================================================
     // Load the DB config, pass in the app to use the environment and other settings.
-    database    = require(app.get('siteRoot') + 'config/database.js');
+    dbConfig    = require(app.get('siteRoot') + 'config/database.js');
     // Connect to the Database using the config url
-    mongoose.createConnection(database.url); // connect to our database
+    var db = mongoose.createConnection(dbConfig.url); // connect to our database
 
     // Basic ===================================================================
     app.use(morgan('dev')); // log every request to the console
@@ -90,7 +92,7 @@ function initSite(siteAlias) {
     localhbs = hbs.create();
 
     // i18n ====================================================================
-    i18n            = require("i18n");  // Internationaliztion
+    i18n = require("i18n");  // Internationaliztion
     i18n.configure({
         locales: ['en-US', 'es-US'],
         defaultLocale: 'en-US',
