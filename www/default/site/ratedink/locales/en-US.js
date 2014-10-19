@@ -4,10 +4,14 @@
 	"topnav.tattoo.label": "Tattoos",
 	"topnav.artists.label": "Artists",
 	"topnav.shops.label": "Shops",
-        "topnav.webapps.label": "Web Apps",
-        "topnav.webapps.maps.label": "Maps",
-        "topnav.webapps.profiles.label": "Profiles",
-        "topnav.webapps.calendar.label": "Calendar",
+        "topnav.tattoo.alias": "tattoos",
+	"topnav.artists.alias": "artists",
+	"topnav.shops.alias": "shops",
+	"topnav.webapps.label": "Web Apps",
+	"topnav.webapps.maps.label": "Maps",
+	"topnav.webapps.profiles.label": "Profiles",
+        "topnav.webapps.stories.label": "Stories",
+	"topnav.webapps.calendar.label": "Calendar",
 	"topnav.account.label": "Account",
 	"topnav.account.credentials.label": "Login / Password",
 	"topnav.account.profiles.label": "Profiles",
@@ -18,6 +22,7 @@
 	"topnav.account.calendar.label": "Calendars",
 	"topnav.account.maps.label": "Maps",
 	"auth.logout.label": "Logout",
-        "auth.login.label": "Login"
-        
+	"auth.login.label": "Login",
+	"topnav.account.contact.label": "Contact",
+	"topnav.account.billing.label": "Billing"
 }
