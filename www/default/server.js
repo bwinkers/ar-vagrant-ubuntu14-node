@@ -103,32 +103,7 @@ function initSite(siteAlias) {
         objectNotation: true
     };
     
-    //i18n.expressBind(app, i18nConfig);
-    
-    app.use(i18n.handle);
-    
-    i18n.registerAppHelper(app);
-
-    i18n.init({ lng: 'en-US',
-                resGetPath: app.get('siteRoot') + 'locales/__lng__/__ns__.json'}
-            );
-    
-    localhbs.registerHelper('__', function(i18n_key) {
-        var result = i18n.t(i18n_key);
-
-        return new localhbs.SafeString(result);
-    });
-    localhbs.registerHelper('tr', function(context, options) { 
-        var opts = i18n.functions.extend(options.hash, context);
-        if (options.fn) opts.defaultValue = options.fn(context);
-
-        var result = i18n.t(opts.key, opts);
-
-        return new localhbs.SafeString(result);
-    });
-    
-
-
+    i18n.expressBind(app, i18nConfig);
 
     // Templating engine =======================================================
     // HBS - Handlebars with blocks and i18n
