@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
 		res.render('home', {
-                        title : 'Test Title'
+                        title : req.i18n.__('home.html.title')
 		});
 	});
             

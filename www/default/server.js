@@ -12,7 +12,7 @@ var flash           = require('connect-flash');     // Pass flash (one-time) mes
 var vhost           = require('vhost');             // Vhost support
 var hbs             = require('express-hbs');       // Handlebars wrapper
 var mongoose        = require('mongoose');          // Mongo database model/schema 
-var i18n            = require("i18next");              // Internationaliztion
+var i18n            = require("i18n-2");              // Internationaliztion
 
 // Database ================================================================
 // Load the DB config, pass in the app to use the environment and other settings.
@@ -110,7 +110,7 @@ function initSite(siteAlias) {
     i18n.registerAppHelper(app);
 
     i18n.init({ lng: 'en-US',
-                resGetPath: 'locales/__lng__/__ns__.json'}
+                resGetPath: app.get('siteRoot') + 'locales/__lng__/__ns__.json'}
             );
     
     localhbs.registerHelper('__', function(i18n_key) {
