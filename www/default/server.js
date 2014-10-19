@@ -12,11 +12,19 @@ var flash           = require('connect-flash');     // Pass flash (one-time) mes
 var vhost           = require('vhost');             // Vhost support
 var hbs             = require('express-hbs');       // Handlebars wrapper
 var mongoose        = require('mongoose');          // Mongo database model/schema 
-var i18n            = require("i18n-2");              // Internationaliztion
+var i18n            = require("i18next");              // Internationaliztion
+
+// Database ================================================================
+// Load the DB config, pass in the app to use the environment and other settings.
+dbConfig    = require('./config/database.js');
+// Connect to the Database using the config url
+mongoose.connect(dbConfig.url);// connect to our database
+// Debug =========
+mongoose.set('debug', true);
 
 // ActiveRules Site Root =======================================================
 // This is used by initSite as the base directory for site 
-var sitesRoot        = __dirname + '/site/';         
+var sitesRoot = __dirname + '/site/';         
 
 // =============================================================================
 // Create the individual apps for each site.
@@ -36,7 +44,7 @@ var izzup = initSite('izzup');
 
 // Set the port the Node.js server will listen on to 808 if not defined
 // Define it in the Gruntfile used to start the app
-var port     = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 
 // The Vhost server Express app
 var ar = express();
@@ -66,7 +74,7 @@ console.log('The server has started on port ' + port);
  */
 function initSite(siteAlias) {
     
-    app = express();
+    var app = express();
     
     // Set the app site root for locating site specific files
     app.set('siteRoot', sitesRoot + siteAlias + '/');
@@ -76,12 +84,6 @@ function initSite(siteAlias) {
     // Override in Gruntfile.
     app.set('env', process.env.NODE_ENV || 'development');
 
-    // Database ================================================================
-    // Load the DB config, pass in the app to use the environment and other settings.
-    dbConfig    = require(app.get('siteRoot') + 'config/database.js');
-    // Connect to the Database using the config url
-    db = mongoose.createConnection(dbConfig.url); // connect to our database
-
     // Basic ===================================================================
     app.use(morgan('dev')); // log every request to the console
     app.use(cookieParser()); // read cookies (needed for auth)
@@ -90,10 +92,10 @@ function initSite(siteAlias) {
     
     // Templating engine =======================================================
     // Handlbars package with i18n and partials support
-    localhbs = hbs.create();
+    var localhbs = hbs.create();
 
     // i18n ====================================================================
-    i18nConfig = {
+    var i18nConfig = {
         locales: ['en-US', 'es-US'],
         defaultLocale: 'en-US',
         cookie: 'locale',
@@ -101,17 +103,32 @@ function initSite(siteAlias) {
         objectNotation: true
     };
     
-    i18n.expressBind(app, i18nConfig);
+    //i18n.expressBind(app, i18nConfig);
     
-    // init i18n module for this loop
-    // app.use(i18n.init);
-    // register hbs helpers in res.locals' context which provides this.locale
-    //localhbs.registerHelper('__', function () {
-    //return i18n.__.apply(this, arguments);
-   // });
-   // localhbs.registerHelper('__n', function () {
-   // return i18n.__n.apply(this, arguments);
-   // });
+    app.use(i18n.handle);
+    
+    i18n.registerAppHelper(app);
+
+    i18n.init({ lng: 'en-US',
+                resGetPath: 'locales/__lng__/__ns__.json'}
+            );
+    
+    localhbs.registerHelper('__', function(i18n_key) {
+        var result = i18n.t(i18n_key);
+
+        return new localhbs.SafeString(result);
+    });
+    localhbs.registerHelper('tr', function(context, options) { 
+        var opts = i18n.functions.extend(options.hash, context);
+        if (options.fn) opts.defaultValue = options.fn(context);
+
+        var result = i18n.t(opts.key, opts);
+
+        return new localhbs.SafeString(result);
+    });
+    
+
+
 
     // Templating engine =======================================================
     // HBS - Handlebars with blocks and i18n
@@ -122,7 +139,6 @@ function initSite(siteAlias) {
       //layout:false,
       partialsDir: app.get('views') + '/partials',
       layoutsDir: app.get('views') + '/layouts'
-      // i18n: i18n,  // registers __ and __n helpers
     }));
     app.set('view engine', 'hbs');
 
