@@ -33,14 +33,8 @@
 	"page.home.content.artists.heading": "Tattoo Artists",
 	"page.home.content.artists.body": "Locate an artist see samples of their work, client reviews and find the shop they are workign at.",
 	"page.home.content.tattoos.heading": "Tattoos",
-	"page.home.content.tattoos.body.1": "View some of the best tattoos in the world, see who craeted them and find where the shop they work at.",
-	"page.home.content.tattoos.body.2": "Post pics of your own tattoos and give a shout out to the artist and shop.",
+	"page.home.content.tattoos.body": "View some of the best tattoos in the world, see who craeted them and find where the shop they work at.",
 	"footer.contact": "Contact Us",
 	"footer.legal": "Legal Info",
-	"footer.social": "Like Us",
-	"footer.contact pull-center": "footer.contact pull-center",
-	"footer.social pull-center": "footer.social pull-center",
-	"page.home.content.tattoo.heading": "page.home.content.tattoo.heading",
-	"page.home.content.tattoo.body": "page.home.content.tattoo.body",
-	"page.home.content.tattoos.body": "page.home.content.tattoos.body"
+	"footer.social": "Like Us"
 }
