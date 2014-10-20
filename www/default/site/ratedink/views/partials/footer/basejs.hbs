@@ -6,3 +6,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/js/ie10-workaround.js"></script>
+<script>
+$(window).resize(function(){
+    if ($(window).width() <= 800){	
+        $( "div" ).removeClass( "equal" )
+    };
+    if ($(window).width() >= 800){	
+        $( ".heq" ).addClass( "equal" )
+    };
+});
+</script>
