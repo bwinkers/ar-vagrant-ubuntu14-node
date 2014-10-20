@@ -42,4 +42,11 @@ code {
     Created on : Oct 14, 2014, 11:27:33 PM
     Author     : Brian Winkers
 */
-
+.equal, .equal > div[class*='col-'] {  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
