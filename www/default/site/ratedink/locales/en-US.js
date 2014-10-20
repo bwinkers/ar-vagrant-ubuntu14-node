@@ -46,5 +46,6 @@
 	"footer.legal.copyright": "Copyright",
 	"footer.about.staff": "Staff",
 	"footer.about.jobs": "Jobs",
-	"footer.about.mission": "Mission"
+	"footer.about.mission": "Mission",
+	"home.html.title": "Welcome"
 }
