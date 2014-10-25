@@ -1,10 +1,14 @@
-<!-- Bootstrap core JavaScript ============================================= -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/LAB.min.js" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+        $LAB
+        .script("/js/knockback-full-stack.min.js")
+        .script("/js/ie10-workaround.js") 
+        .script("/js/cacheprovider.js").wait();      
+</script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="/js/ie10-workaround.js"></script>
 <!-- Script to handle equal sizing of column height on window resize. -->
 <script>
 $(window).resize(function(){

@@ -47,6 +47,24 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+        
+// =============================================================================
+// Static page routes for serving SEO pages
+// =============================================================================
+
+        // Shops landing page ==============================
+	app.get('/shops', function(req, res) {
+		res.render('pages/shops', {
+                        title : req.i18n.__('page.shops.html.title')
+		});
+	});
+        
+        // Shop layout ==============================
+	app.get('/shop', function(req, res) {
+		res.render('pages/shop', {
+                        title : req.i18n.__('page.shop.html.title')
+		});
+	});
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
