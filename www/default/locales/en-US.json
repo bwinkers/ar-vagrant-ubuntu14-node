@@ -1,0 +1,159 @@
+{
+	"page": {
+		"home": {
+			"html": {
+				"title": "Welcome"
+			},
+			"h1": "page.home.h1",
+			"h2": "page.home.h2",
+			"h3": "page.home.h3",
+			"content": {
+				"tattoos": {
+					"heading": "page.home.content.tattoos.heading",
+					"body": "page.home.content.tattoos.body"
+				},
+				"artists": {
+					"heading": "page.home.content.artists.heading",
+					"body": "page.home.content.artists.body"
+				},
+				"shops": {
+					"heading": "page.home.content.shops.heading",
+					"body": "page.home.content.shops.body"
+				}
+			}
+		},
+		"auth": {
+			"html": {
+				"title": "Login Options"
+			}
+		}
+	},
+	"site": {
+		"name": {
+			"web": "site.name.web"
+		}
+	},
+	"topnav": {
+		"tattoos": {
+			"alias": "tattoos",
+			"label": "Tattoos"
+		},
+		"artists": {
+			"alias": "artists",
+			"label": "Artists"
+		},
+		"shops": {
+			"alias": "shops",
+			"label": "Shops"
+		},
+		"webapps": {
+			"label": "Apps",
+			"profiles": {
+				"label": "Profiles"
+			},
+			"calendar": {
+				"label": "Calendars"
+			},
+			"maps": {
+				"label": "Maps"
+			},
+			"stories": {
+				"label": "Stories"
+			}
+		},
+		"account": {
+			"label": "Account",
+			"credentials": {
+				"label": "Login / Password"
+			},
+			"contact": {
+				"label": "Contact Info"
+			},
+			"billing": {
+				"label": "Billing"
+			},
+			"content": {
+				"label": "Content",
+				"images": {
+					"label": "Images"
+				},
+				"video": {
+					"label": "Video"
+				},
+				"files": {
+					"label": "Files"
+				}
+			},
+			"video": {
+				"label": "Videos"
+			},
+			"files": {
+				"label": "Files"
+			}
+		},
+		"stories": {
+			"alias": "stories",
+			"label": "Stories"
+		},
+		"people": {
+			"alias": "people",
+			"label": "People"
+		},
+		"content": {
+			"alias": "content",
+			"label": "Content"
+		},
+		"search": {
+			"alias": "search",
+			"label": "Search"
+		},
+		"projects": {
+			"alias": "projects",
+			"label": "Projects"
+		}
+	},
+	"auth": {
+		"logout": {
+			"label": "Logout"
+		}
+	},
+	"footer": {
+		"contact": {
+			"label": "Contact Us",
+			"support": {
+				"label": "Support"
+			},
+			"sales": {
+				"label": "Sales"
+			},
+			"advertising": {
+				"Advertising": "footer.contact.advertising.Advertising",
+				"label": "Advertising"
+			}
+		},
+		"legal": {
+			"label": "Legal",
+			"privacy": {
+				"label": "Privacy"
+			},
+			"terms": {
+				"label": "Terms and Conditions"
+			},
+			"copyright": {
+				"label": "Copyright"
+			}
+		},
+		"about": {
+			"label": "About Us",
+			"staff": {
+				"label": "Staff"
+			},
+			"jobs": {
+				"label": "Jobs"
+			},
+			"mission": {
+				"label": "Mission"
+			}
+		}
+	}
+}

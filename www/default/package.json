@@ -26,6 +26,7 @@
     "express": "^4.9.7",
     "express-hbs": "^0.7.11",
     "express-session": "^1.8.2",
+    "express-spa-router": "0.0.8",
     "i18n-2": "^0.4.6",
     "knockback": "latest",
     "knockout": "latest",

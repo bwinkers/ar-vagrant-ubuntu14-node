@@ -1,10 +1,21 @@
 <div class="jumbotron text-center">
-        <h1>ActiveRules</h1>
-
-{{{__ "Hello"}}}
-
-{{{__ "app.name" 'Brian'}}}
-
-{{{__ "greeting.placeholder.informal:Hi %s" 'Brianx'}}}
-
+    <h1>{{__ "page.home.h1"}}</h1>
+    <h2>{{__ "page.home.h2"}}</h2>
+    <h3>{{__ "page.home.h3"}}</h3>
 </div>
+
+<div id="equalc" class="row col-wrap equal heq">
+
+    <div class="col-sm-4">
+        {{> "content/page/home/tattoos"}} 
+    </div><!-- end span 4-->
+
+    <div class="col-sm-4">
+        {{> "content/page/home/artists"}}
+    </div><!--end span4-->
+
+    <div class="col-sm-4">
+        {{> "content/page/home/shops"}}
+    </div><!-- end span 4-->
+
+</div><!-- end row -->

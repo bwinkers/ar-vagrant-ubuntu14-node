@@ -163,7 +163,7 @@ module.exports = function(grunt) {
                 options: {
                     file: 'server.js',
                     nodeArgs: ['--debug'],
-                    watchedFolders: ['controllers', 'app', 'views', 'config', 'site'],
+                    watchedFolders: ['controllers', 'app', 'views', 'config', 'site', 'locales'],
                     env: {
                         PORT: '80'
                     }

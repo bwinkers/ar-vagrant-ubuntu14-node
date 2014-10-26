@@ -9,14 +9,21 @@ module.exports = function(app, passport) {
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
 		res.render('home', {
-                        title : res.__('home.html.title')
+                        title : res.__("page.home.html.title:Welcome")
+		});
+	});
+        
+        // show the auth options page
+	app.get('/shops', function(req, res) {
+                res.render('auth/options', {
+                        title : res.__('page.auth.html.title:Login Options')
 		});
 	});
             
         // show the home page (will also have our login links)
 	app.get('/account', isLoggedIn, function(req, res) {
 		res.render('account/home', {
-                        title : res.__('account.home.html.title')
+                        title : res.__('page.account.html.title:Account')
 		});
 	});
         
@@ -31,7 +38,7 @@ module.exports = function(app, passport) {
         // show the auth options page
 	app.get('/auth', function(req, res) {
                 res.render('auth/options', {
-                        title : res.__('auth.html.title')
+                        title : res.__('page.auth.html.title:Login Options')
 		});
 	});
 
@@ -57,7 +64,7 @@ module.exports = function(app, passport) {
 		// show the login form
 		app.get('/login', function(req, res) {
                         res.render('auth/login', {
-                        title : res.__('login.html.title', 'Login'),
+                        title : res.__('page.login.html.title:Login'),
                         message: req.flash('loginMessage'),
                         failureFlash : true // allow flash messages
                     });
@@ -74,7 +81,7 @@ module.exports = function(app, passport) {
 		// show the signup form
 		app.get('/signup', function(req, res) {
                         res.render('signup/signup', {
-                        title : res.__('signup.html.title', 'Join'),
+                        title : res.__('page.signup.html.title:Join - Signup'),
                         message: req.flash('signupMessage'),
                         failureFlash : true // allow flash messages
                     });
