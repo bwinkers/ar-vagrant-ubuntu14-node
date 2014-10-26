@@ -3,8 +3,8 @@ module.exports = function(app, passport) {
     if(app.settings.env == 'development') {
         console.log('The Routes know the enviro');
     }
-
-// normal routes ===============================================================
+    
+// default route ===============================================================
 
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
@@ -13,13 +13,98 @@ module.exports = function(app, passport) {
 		});
 	});
         
-        // show the auth options page
+// =============================================================================
+// Static page routes for serving SEO pages
+// =============================================================================
+
+        // Shops landing page ==============================
 	app.get('/shops', function(req, res) {
-                res.render('auth/options', {
-                        title : res.__('page.auth.html.title:Login Options')
+		res.render('pages/shops', {
+                        title : res.__('page.shops.html.title:Shops')
 		});
 	});
+        
+        // Shop layout ==============================
+	app.get('/shop', function(req, res) {
+		res.render('pages/shop', {
+                        title : res.__('page.shop.html.title:Shop')
+		});
+	});
+        
+        // Stories landing page ==============================
+	app.get('/stories', function(req, res) {
             
+                var is_ajax_request = req.xhr;
+                
+                var vlayout = 'main';
+                    
+                if(is_ajax_request) {
+                    vlayout = false;
+                } 
+                
+		res.render('pages/stories', {
+                         title : res.__('page.stories.html.title:Stories'),
+                         layout: vlayout
+		});
+	});
+        
+        // Story layout ==============================
+	app.get('/story', function(req, res) {
+		res.render('pages/story', {
+                        title : res.__('page.story.html.title:Story')
+		});
+	});
+        
+        // People landing page ==============================
+	app.get('/people', function(req, res) {
+            
+                var is_ajax_request = req.xhr;
+                
+                var vlayout = 'main';
+                    
+                if(is_ajax_request) {
+                    vlayout = false;
+                } 
+                
+                res.render('pages/people', {
+                    title : res.__('page.people.html.title:People'),
+                    layout: vlayout 
+                });
+		
+	});
+        
+        // Profile route ==============================
+	app.get('/profile', function(req, res) {
+		res.render('pages/profile', {
+                        title : res.__('page.profile.html.title:Profile')
+		});
+	});
+        
+        // Content route ==============================
+	app.get('/content', function(req, res) {
+            
+                var vlayout = 'main';
+                var is_ajax_request = req.xhr;
+                if(is_ajax_request) {
+                    vlayout = false;
+                } 
+                
+		res.render('pages/content', {
+                        title : res.__('page.content.html.title:Content'),
+                        layout: vlayout
+		});
+	});
+        
+        // Apps route ==============================
+	app.get('/apps', function(req, res) {
+		res.render('pages/apps', {
+                        title : res.__('page.apps.html.title:Apps')
+		});
+	});
+  
+// =============================================================================
+// Member Account Routes
+// =============================================================================
         // show the home page (will also have our login links)
 	app.get('/account', isLoggedIn, function(req, res) {
 		res.render('account/home', {

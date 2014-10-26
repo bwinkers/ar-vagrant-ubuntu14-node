@@ -26,6 +26,29 @@
 			"html": {
 				"title": "Login Options"
 			}
+		},
+		"people": {
+			"html": {
+				"title": "People"
+			}
+		},
+		"shop": {
+			"h1": "page.shop.h1",
+			"h2": "page.shop.h2",
+			"h3": "page.shop.h3",
+			"html": {
+				"title": "Shop"
+			}
+		},
+		"content": {
+			"html": {
+				"title": "Content"
+			}
+		},
+		"stories": {
+			"html": {
+				"title": "Stories"
+			}
 		}
 	},
 	"site": {

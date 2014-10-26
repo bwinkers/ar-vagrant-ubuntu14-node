@@ -5,7 +5,7 @@
         $LAB
         .script("/js/knockback-full-stack.min.js")
         .script("/js/ie10-workaround.js")
-        .script("/js/jquery.history.js")
+//        .script("/js/jquery.history.js")
         .script("/js/cacheprovider.js").wait();      
 </script>
 <!-- Latest compiled and minified JavaScript -->
@@ -13,7 +13,7 @@
 <!-- jQuery ScrollTo Plugin -->
 <!-- <script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script> -->
 <!-- History.js -->
-<!-- <script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>-->
+<script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-history/1.9/jquery.history.min.js"></script> -->
 <!-- Script to handle equal sizing of column height on window resize. -->
 <script>
@@ -27,59 +27,37 @@ $(window).resize(function(){
 });
 </script>
 
-	<textarea id="log" style="width:100%;height:400px;margin:1em;"></textarea>
-	<div id="url" style="border:1px black dotted;height:1em;margin:1em;"></div>
-	<div id="buttons" style="margin:1em;"></div>
+<script>
+(function(window,undefined){
+// Check Location
+if ( document.location.protocol === 'file:' ) {
+alert('The HTML5 History API (and thus History.js) do not work on files, please upload it to a server.');
+}
+// Establish Variables
+var
+State = History.getState(),
+$log = $('#log');
+// Log Initial State
+History.log('initial:', State.data, State.title, State.url);
+// Bind to State Change
+History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+    // Log the State
+    var State = History.getState(); // Note: We are using History.getState() instead of event.state
+    
+    History.log('statechange:', State.data, State.title, State.url);
 
-<script type="text/javascript">
-			var $url = document.getElementById('url'), $log = document.getElementById('log');
+    $.ajax(State.url, {
+          success: function(data) {
+             //$('#main').html($(data).find('#main *'));
+             //$('#notification-bar').text('The page has been successfully loaded');
+             $( "#ar-content" ).html(data);
+          },
+          error: function() {
+             $('#notification-bar').text('An error occurred');
+             alert('damn');
+          }
+       });
+    });
 
-			window.onpopstate = function(event) {
-				var message =
-					"onpopstate: "+
-					"location: " + location.href + ", " +
-					"data: " + JSON.stringify(event.state) +
-					"\n\n"
-					;
-
-				//$url.innerHTML = location.href;
-				//$log.innerHTML += message;
-				console.log(message);
-			};
-
-			window.onhashchange = function(event) {
-				var message =
-					"onhashchange: "+
-					"location: " + location.href + ", "+
-					"hash: " + location.hash +
-					"\n\n"
-					;
-
-				//$url.innerHTML = location.href;
-				//$log.innerHTML += message;
-				console.log(message);
-			};
-
-			// Prepare Buttons
-			var
-				buttons = document.getElementById('buttons'),
-				scripts = [
-					'history.pushState({state:1}, "State 1", "?state=1");',
-					'history.pushState({state:2}, "State 2", "?state=2");',
-					'history.replaceState({state:3}, "State 3", "?state=3");',
-					'location.hash = Math.random();',
-					'history.back();',
-					'history.forward();',
-					'document.location.href = document.location.href.replace(/[\#\?].*/,"");'
-				],
-				buttonsHTML = ''
-				;
-
-			// Add Buttons
-			for ( var i=0,n=scripts.length; i<n; ++i ) {
-				var _script = scripts[i];
-				buttonsHTML +=
-					'<li><button onclick=\'javascript:'+_script+'\'>'+_script+'</button></li>';
-			}
-			buttons.innerHTML = buttonsHTML;
-	</script>
+})(window);
+</script>
