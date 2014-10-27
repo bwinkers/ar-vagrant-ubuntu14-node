@@ -12,33 +12,33 @@
     </div>
     <div class="collapse navbar-collapse pull-right">
       <ul id="ar-nav" class="nav navbar-nav">
-        <li><a href="#{{__ 'topnav.stories.alias'}}">{{__ 'topnav.stories.label'}}</a></li> 
-        <li><a href="#{{__ 'topnav.people.alias'}}">{{__ 'topnav.people.label'}}</a></li>
-        <li><a href="#{{__ 'topnav.content.alias'}}">{{__ 'topnav.content.label'}}</a></li>
+        <li><a href="#/{{__ 'topnav.stories.alias:stories'}}">{{__ 'topnav.stories.label:Stories'}}</a></li>  
+        <li><a href="#/{{__ 'topnav.people.alias:people'}}">{{__ 'topnav.people.label:People'}}</a></li>
+        <li><a href="#/{{__ 'topnav.content.alias:content'}}">{{__ 'topnav.content.label:Content'}}</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'topnav.webapps.label'}} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'topnav.webapps.label:Apps'}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">{{__ 'topnav.webapps.profiles.label'}}</a></li>
-            <li><a href="#">{{__ 'topnav.webapps.calendar.label'}}</a></li>
-            <li><a href="#">{{__ 'topnav.webapps.maps.label'}}</a></li>
-            <li><a href="#">{{__ 'topnav.webapps.stories.label'}}</a></li>
+            <li><a href="#/{{__ 'topnav.webapps.alias:apps'}}/{{__ 'topnav.webapps.profiles.alias:profiles'}}">{{__ 'topnav.webapps.profiles.label:Profiles'}}</a></li>
+            <li><a href="#/{{__ 'topnav.webapps.alias:apps'}}/{{__ 'topnav.webapps.calendar.alias:calendars'}}">{{__ 'topnav.webapps.calendar.label:Calendars'}}</a></li>
+            <li><a href="#/{{__ 'topnav.webapps.alias:apps'}}/{{__ 'topnav.webapps.maps.alias:maps'}}">{{__ 'topnav.webapps.maps.label:Maps'}}</a></li>
+            <li><a href="#/{{__ 'topnav.webapps.alias:apps'}}/{{__ 'topnav.webapps.stories.alias:stories'}}">{{__ 'topnav.webapps.stories.label:Stories'}}</a></li>
           </ul>
         </li>  
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'topnav.account.label'}} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'topnav.account.label:Account'}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">{{__ 'topnav.account.credentials.label'}}</a></li>
+            <li><a href="#/{{__ 'topnav.account.alias:account'}}/{{__ 'topnav.account.credentials.alias:auths'}}">{{__ 'topnav.account.credentials.label:Login / Password'}}</a></li>
             <li class="divider"></li>
-            <li><a href="#">{{__ 'topnav.account.contact.label'}}</a></li>
+            <li><a href="#/{{__ 'topnav.account.alias:account'}}/{{__ 'topnav.account.contact.alias:contact'}}">{{__ 'topnav.account.contact.label:Contact'}}</a></li>
             <li class="divider"></li>
-            <li><a href="#">{{__ 'topnav.account.billing.label'}}</a></li>
+            <li><a href="#/{{__ 'topnav.account.alias:account'}}/{{__ 'topnav.account.billing.alias:billing'}}">{{__ 'topnav.account.billing.label:Billing'}}</a></li>
             <li class="divider"></li>
-            <li class="dropdown-header">{{__ 'topnav.account.content.label'}}</li>
-            <li><a href="#">{{__ 'topnav.account.content.images.label'}}</a></li>
-            <li><a href="#">{{__ 'topnav.account.content.video.label'}}</a></li>
-            <li><a href="#">{{__ 'topnav.account.content.files.label'}}</a></li>
+            <li class="dropdown-header">{{__ 'topnav.account.content.label:Content'}}</li>
+            <li><a href="#/{{__ 'topnav.account.alias'}}/{{__ 'topnav.account.content.alias'}}/{{__ 'topnav.account.content.images.alias:images'}}">{{__ 'topnav.account.content.images.label:images'}}</a></li>
+            <li><a href="#/{{__ 'topnav.account.alias'}}/{{__ 'topnav.account.content.alias'}}/{{__ 'topnav.account.content.video.alias:video'}}">{{__ 'topnav.account.content.video.label:Video'}}</a></li>
+            <li><a href="#/{{__ 'topnav.account.alias'}}/{{__ 'topnav.account.content.alias'}}/{{__ 'topnav.account.content.files.alias:files'}}">{{__ 'topnav.account.content.files.label:Files'}}</a></li>
             <li class="divider"></li>
-            <li><a href="#">{{__ 'auth.logout.label'}}</a></li>
+            <li><a href="#/{{__ 'auth.logout.alias:logout'}}">{{__ 'auth.logout.label:Logout'}}</a></li>
           </ul>
         </li>
       </ul>

@@ -49,11 +49,38 @@
 			"html": {
 				"title": "Stories"
 			}
+		},
+		"login": {
+			"html": {
+				"title": "Login"
+			}
+		},
+		"signup": {
+			"html": {
+				"title": "Join - Signup"
+			}
+		},
+		"account": {
+			"html": {
+				"title": "Account"
+			}
+		},
+		"apps": {
+			"profiles": {
+				"html": {
+					"title": "Profiles"
+				}
+			},
+			"maps": {
+				"html": {
+					"title": "Maps"
+				}
+			}
 		}
 	},
 	"site": {
 		"name": {
-			"web": "site.name.web"
+			"web": "ActiveRules"
 		}
 	},
 	"topnav": {
@@ -72,47 +99,60 @@
 		"webapps": {
 			"label": "Apps",
 			"profiles": {
-				"label": "Profiles"
+				"label": "Profiles",
+				"alias": "profiles"
 			},
 			"calendar": {
-				"label": "Calendars"
+				"label": "Calendars",
+				"alias": "calendars"
 			},
 			"maps": {
-				"label": "Maps"
+				"label": "Maps",
+				"alias": "maps"
 			},
 			"stories": {
-				"label": "Stories"
-			}
+				"label": "Stories",
+				"alias": "stories"
+			},
+			"alias": "apps"
 		},
 		"account": {
 			"label": "Account",
 			"credentials": {
-				"label": "Login / Password"
+				"label": "Login / Password",
+				"alias": "auths"
 			},
 			"contact": {
-				"label": "Contact Info"
+				"label": "Contact Info",
+				"alias": "contact"
 			},
 			"billing": {
-				"label": "Billing"
+				"label": "Billing",
+				"alias": "billing"
 			},
 			"content": {
 				"label": "Content",
 				"images": {
-					"label": "Images"
+					"label": "Images",
+					"alias": "images"
 				},
 				"video": {
-					"label": "Video"
+					"label": "Video",
+					"alias": "video"
 				},
 				"files": {
-					"label": "Files"
-				}
+					"label": "Files",
+					"alias": "files"
+				},
+				"alias": "content"
 			},
 			"video": {
 				"label": "Videos"
 			},
 			"files": {
 				"label": "Files"
-			}
+			},
+			"alias": "account"
 		},
 		"stories": {
 			"alias": "stories",
@@ -137,7 +177,8 @@
 	},
 	"auth": {
 		"logout": {
-			"label": "Logout"
+			"label": "Logout",
+			"alias": "logout"
 		}
 	},
 	"footer": {
@@ -150,7 +191,6 @@
 				"label": "Sales"
 			},
 			"advertising": {
-				"Advertising": "footer.contact.advertising.Advertising",
 				"label": "Advertising"
 			}
 		},
@@ -178,5 +218,17 @@
 				"label": "Mission"
 			}
 		}
-	}
+	},
+	"account": {
+		"authentication_options": {
+			"label": "Login Options"
+		},
+		"cancel": {
+			"label": "Cancel"
+		},
+		"connect": {
+			"label": "Connect"
+		}
+	},
+	"Hello": "Hello"
 }
