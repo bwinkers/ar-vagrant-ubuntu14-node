@@ -63,6 +63,11 @@
 		"account": {
 			"html": {
 				"title": "Account"
+			},
+			"auths": {
+				"html": {
+					"title": "Access Options"
+				}
 			}
 		},
 		"apps": {
@@ -75,6 +80,14 @@
 				"html": {
 					"title": "Maps"
 				}
+			},
+			"stories": {
+				"html": {
+					"title": "Stories"
+				}
+			},
+			"html": {
+				"title": "Apps"
 			}
 		}
 	},
@@ -83,7 +96,7 @@
 			"web": "ActiveRules"
 		}
 	},
-	"topnav": {
+	"nav": {
 		"tattoos": {
 			"alias": "tattoos",
 			"label": "Tattoos"
@@ -95,6 +108,14 @@
 		"shops": {
 			"alias": "shops",
 			"label": "Shops"
+		},
+		"shop": {
+			"alias": "shop",
+			"label": "Shop"
+		},
+		"stories": {
+			"alias": "stories",
+			"label": "Stories"
 		},
 		"webapps": {
 			"label": "Apps",
@@ -114,7 +135,10 @@
 				"label": "Stories",
 				"alias": "stories"
 			},
-			"alias": "apps"
+			"alias": "apps",
+			"calendars": {
+				"alias": "calendars"
+			}
 		},
 		"account": {
 			"label": "Account",
@@ -152,11 +176,10 @@
 			"files": {
 				"label": "Files"
 			},
-			"alias": "account"
-		},
-		"stories": {
-			"alias": "stories",
-			"label": "Stories"
+			"alias": "account",
+			"auths": {
+				"alias": "auths"
+			}
 		},
 		"people": {
 			"alias": "people",
@@ -173,12 +196,37 @@
 		"projects": {
 			"alias": "projects",
 			"label": "Projects"
+		},
+		"story": {
+			"alias": "story"
+		},
+		"profile": {
+			"alias": "profile"
+		},
+		"auth": {
+			"alias": "auth",
+			"options": {
+				"alias": "auth_options"
+			}
+		},
+		"logout": {
+			"alias": "logout"
+		},
+		"login": {
+			"alias": "login"
+		},
+		"signup": {
+			"alias": "signup"
 		}
 	},
 	"auth": {
 		"logout": {
 			"label": "Logout",
 			"alias": "logout"
+		},
+		"login": {
+			"label": "Login",
+			"alias": "login"
 		}
 	},
 	"footer": {

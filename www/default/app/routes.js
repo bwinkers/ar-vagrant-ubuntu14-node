@@ -1,166 +1,117 @@
 module.exports = function(app, passport) {
     
+    i18n = app.get('i18n');
+    
     if(app.settings.env == 'development') {
         console.log('The Routes know the enviro');
     }
     
 // default route ===============================================================
 
-	// show the home page (will also have our login links)
-	app.get('/', function(req, res) {
-            res.render('home', {
-                title : res.__("page.home.html.title:Welcome")
-            });
-	});
+    // show the home page (will also have our login links)
+    app.get('/', function(req, res) {
+        res.render('home', {
+            title : res.__("page.home.html.title:Welcome")
+        });
+    });
         
 // =============================================================================
 // Static page routes for serving SEO pages
 // =============================================================================
 
     // Shops landing page ==============================
-    app.get('/shops', function(req, res) {
+    app.get('/' + i18n.__('nav.shops.alias'), function(req, res) {
         res.render('pages/shops', {
-            title : res.__('page.shops.html.title:Shops')
+            title : res.__('page.shops.html.title:Shops'),
+            layout: vLayout(req)
         });
     });
 
     // Shop layout ==============================
-    app.get('/shop', function(req, res) {
+    app.get('/' + i18n.__('nav.shop.alias'), function(req, res) {
         res.render('pages/shop', {
-                title : res.__('page.shop.html.title:Shop')
+                title : res.__('page.shop.html.title:Shop'),
+                layout: vLayout(req)
         });
     });
 
     // Stories landing page ==============================
-    app.get('/stories', function(req, res) {
-        var vlayout = 'main';
-        var is_ajax_request = req.xhr;
-        if(is_ajax_request) {
-            vlayout = false;
-        } 
-
+    app.get('/' + i18n.__('nav.stories.alias'), function(req, res) {
         res.render('pages/stories', {
             title : res.__('page.stories.html.title:Stories'),
-            layout: vlayout
+            layout: vLayout(req)
         });
     });
 
     // Story layout ==============================
-    app.get('/story', function(req, res) {
+    app.get('/' + i18n.__('nav.story.alias'), function(req, res) {
         res.render('pages/story', {
-                title : res.__('page.story.html.title:Story')
+                title : res.__('page.story.html.title:Story'),
+                layout: vLayout(req)
         });
     });
 
     // People landing page ==============================
-    app.get('/people', function(req, res) {
-        var vlayout = 'main';
-        var is_ajax_request = req.xhr;
-        if(is_ajax_request) {
-            vlayout = false;
-        } 
-
+    app.get('/' + i18n.__('nav.people.alias'), function(req, res) {
         res.render('pages/people', {
             title : res.__('page.people.html.title:People'),
-            layout: vlayout 
+            layout: vLayout(req) 
         });
     });
 
     // Profile route ==============================
-    app.get('/profile', function(req, res) {
+    app.get('/' + i18n.__('nav.profile.alias'), function(req, res) {
             res.render('pages/profile', {
-                title : res.__('page.profile.html.title:Profile')
+                title : res.__('page.profile.html.title:Profile'),
+                layout: vLayout(req)
             });
     });
 
     // Content route ==============================
-    app.get('/content', function(req, res) {
-
-            var vlayout = 'main';
-            var is_ajax_request = req.xhr;
-            if(is_ajax_request) {
-                vlayout = false;
-            } 
-
+    app.get('/' + i18n.__('nav.content.alias'), function(req, res) {
             res.render('pages/content', {
                 title : res.__('page.content.html.title:Content'),
-                layout: vlayout
+                layout: vLayout(req) 
             });
     });
 
     // Apps route ==============================
-    app.get('/apps', function(req, res) {
-
-            var vlayout = 'main';
-            var is_ajax_request = req.xhr;
-            if(is_ajax_request) {
-                vlayout = false;
-            } 
-
-            res.render('pages/apps', {
-                title : res.__('page.apps.html.title:Apps'),
-                layout: vlayout 
-            });
+    app.get('/' + i18n.__('nav.webapps.alias'), function(req, res) {
+        res.render('pages/apps', {
+            title : res.__('page.apps.html.title:Apps'),
+            layout: vLayout(req) 
+        });
     });
 
     // Profile application route ==============================
-    app.get('/apps/profiles', function(req, res) {
-
-            var vlayout = 'main';
-            var is_ajax_request = req.xhr;
-            if(is_ajax_request) {
-                vlayout = false;
-            } 
-
-            res.render('pages/apps/profiles', {
-                title : res.__('page.apps.profiles.html.title:Profiles'),
-                layout: vlayout 
-            });
+    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.profiles.alias'), function(req, res) {
+        res.render('pages/apps/profiles', {
+            title : res.__('page.apps.profiles.html.title:Profiles'),
+            layout: vLayout(req) 
+        });
     });
 
     // Stories application route ==============================
-    app.get('/apps/stories', function(req, res) {
-
-            var vlayout = 'main';
-            var is_ajax_request = req.xhr;
-            if(is_ajax_request) {
-                vlayout = false;
-            } 
-
-            res.render('pages/apps/stories', {
-                title : res.__('page.apps.stories.html.title:Stories'),
-                layout: vlayout 
-            });
+    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.stories.alias'), function(req, res) {
+        res.render('pages/apps/stories', {
+            title : res.__('page.apps.stories.html.title:Stories'),
+            layout: vLayout(req)  
+        });
     });
 
     // Maps application route ==============================
-    app.get('/apps/maps', function(req, res) {
-
-            var vlayout = 'main';
-            var is_ajax_request = req.xhr;
-            if(is_ajax_request) {
-                vlayout = false;
-            } 
-
-            res.render('pages/apps/maps', {
-                title : res.__('page.apps.maps.html.title:Maps'),
-                layout: vlayout 
-            });
+    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.maps.alias'), function(req, res) {
+        res.render('pages/apps/maps', {
+            title : res.__('page.apps.maps.html.title:Maps'),
+            layout: vLayout(req)  
+        });
     });
 
     // Calendars application route ==============================
-    app.get('/apps/calendars', function(req, res) {
-
-        var vlayout = 'main';
-        var is_ajax_request = req.xhr;
-        if(is_ajax_request) {
-            vlayout = false;
-        } 
-
-
+    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.calendars.alias'), function(req, res) {
         res.render('pages/apps/calendars', {
             title : res.__('page.apps.maps.html.title:Calendars'),
-            layout: vlayout 
+            layout: vLayout(req)
         });
     });
 
@@ -168,36 +119,39 @@ module.exports = function(app, passport) {
 // Member Account Routes
 // =============================================================================
     // show the home page (will also have our login links)
-    app.get('/account', isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias'), isLoggedIn, function(req, res) {
         res.render('account/home', {
-            title : res.__('page.account.html.title:Account')
+            title : res.__('page.account.html.title:Account'),
+            layout: vLayout(req)
         });
     });
 
     // show the home page (will also have our login links)
-    app.get('/account/auths', isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), isLoggedIn, function(req, res) {
         res.render('account/auths', {
             user : req.user,
-            title : 'Authentication Options'
+            title : res.__('page.account.auths.html.title:Access Options'),
+            layout: vLayout(req)
         });
     });
 
     // show the auth options page
-    app.get('/auth', function(req, res) {
+    app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
         res.render('auth/options', {
-            title : res.__('page.auth.html.title:Login Options')
+            title : res.__('page.auth.html.title:Login Options'),
+            layout: vLayout(req)
         });
     });
 
     // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.profile.alias'), isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
-            user : req.user
+            user : req.user,
         });
     });
 
     // LOGOUT ==============================
-    app.get('/logout', function(req, res) {
+    app.get('/' + i18n.__('nav.logout.alias'), function(req, res) {
         req.logout();
         res.redirect('/');
     });
@@ -209,16 +163,18 @@ module.exports = function(app, passport) {
     // locally --------------------------------
     // LOGIN ===============================
     // show the login form
-    app.get('/login', function(req, res) {
+    app.get('/' + i18n.__('nav.login.alias'), function(req, res) {
             res.render('auth/login', {
             title : res.__('page.login.html.title:Login'),
             message: req.flash('loginMessage'),
+            layout: vLayout(req),
             failureFlash : true // allow flash messages
+            
         });
     });
 
     // process the login form
-    app.post('/login', passport.authenticate('local-login', {
+    app.post('/' + i18n.__('nav.login.alias'), passport.authenticate('local-login', {
             successRedirect : '/account/auths', // redirect to the secure profile section
             failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
@@ -226,16 +182,17 @@ module.exports = function(app, passport) {
 
     // SIGNUP =================================
     // show the signup form
-    app.get('/signup', function(req, res) {
+    app.get('/' + i18n.__('nav.signup.alias'), function(req, res) {
             res.render('signup/signup', {
             title : res.__('page.signup.html.title:Join - Signup'),
             message: req.flash('signupMessage'),
+            layout: vLayout(req),
             failureFlash : true // allow flash messages
         });
     });
 
     // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/' + i18n.__('nav.signup.alias'), passport.authenticate('local-signup', {
             successRedirect : '/account', // redirect to the secure profile section
             failureRedirect : '/signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
@@ -382,4 +339,22 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	res.redirect('/auth');
+}
+
+// 
+function vLayout(req, layout) {
+
+    if(layout) {
+        var vlayout =  layout;
+    } else {
+        var vlayout = 'main';
+    }
+    
+    var is_ajax_request = req.xhr;
+    
+    if(is_ajax_request) {
+        vlayout = 'json';
+    } 
+    
+    return vlayout;
 }

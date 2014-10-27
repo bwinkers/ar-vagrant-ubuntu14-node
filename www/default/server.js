@@ -55,6 +55,9 @@ hbs.registerHelper('__n', function () {
 return i18n.__n.apply(this, arguments);
 });
 
+// Set i18n in app for accessing in router
+app.set('i18n', i18n);
+
 // Templating engine ===========================================================
 // HBS
 app.set('views', __dirname + '/views');
