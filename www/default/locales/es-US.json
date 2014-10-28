@@ -1,1 +1,320 @@
-{}
+{
+	"page": {
+		"home": {
+			"html": {
+				"title": "Bienvenidos"
+			},
+			"h1": "page.home.h1",
+			"h2": "page.home.h2",
+			"h3": "page.home.h3",
+			"content": {
+				"tattoos": {
+					"heading": "page.home.content.tattoos.heading",
+					"body": "page.home.content.tattoos.body"
+				},
+				"artists": {
+					"heading": "page.home.content.artists.heading",
+					"body": "page.home.content.artists.body"
+				},
+				"shops": {
+					"heading": "page.home.content.shops.heading",
+					"body": "page.home.content.shops.body"
+				}
+			}
+		},
+		"auth": {
+			"html": {
+				"title": "Opciones Iniciar sesión"
+			}
+		},
+		"people": {
+			"html": {
+				"title": "Personas"
+			}
+		},
+		"shop": {
+			"h1": "page.shop.h1",
+			"h2": "page.shop.h2",
+			"h3": "page.shop.h3",
+			"html": {
+				"title": "Tiendas"
+			}
+		},
+		"content": {
+			"html": {
+				"title": "Contenido"
+			}
+		},
+		"stories": {
+			"html": {
+				"title": "Historias"
+			}
+		},
+		"login": {
+			"html": {
+				"title": "Login"
+			}
+		},
+		"signup": {
+			"html": {
+				"title": "Únete - Regístrate"
+			}
+		},
+		"account": {
+			"html": {
+				"title": "Cuenta"
+			},
+			"auths": {
+				"html": {
+					"title": "Opciones de acceso"
+				}
+			},
+			"billing": {
+				"html": {
+					"title": "Historial de facturación"
+				}
+			},
+			"content": {
+				"images": {
+					"html": {
+						"title": "Biblioteca de imágenes"
+					}
+				},
+				"video": {
+					"html": {
+						"title": "Biblioteca de vídeo"
+					}
+				},
+				"files": {
+					"html": {
+						"title": "File Storage"
+					}
+				}
+			}
+		},
+		"apps": {
+			"profiles": {
+				"html": {
+					"title": "Perfil"
+				}
+			},
+			"maps": {
+				"html": {
+					"title": "Mapas"
+				}
+			},
+			"stories": {
+				"html": {
+					"title": "Historias"
+				}
+			},
+			"html": {
+				"title": "Aplicaciones"
+			}
+		}
+	},
+	"site": {
+		"name": {
+			"web": "ActiveRules"
+		}
+	},
+	"nav": {
+		"tattoos": {
+			"alias": "tattoos",
+			"label": "Tattoos"
+		},
+		"artists": {
+			"alias": "artistas",
+			"label": "Artistas"
+		},
+		"shops": {
+			"alias": "tiendas",
+			"label": "Tiendas"
+		},
+		"shop": {
+			"alias": "tienda",
+			"label": "Tienda"
+		},
+		"stories": {
+			"alias": "historias",
+			"label": "Historias"
+		},
+		"webapps": {
+			"label": "Apps",
+			"profiles": {
+				"label": "Perfils",
+				"alias": "prerfils"
+			},
+			"calendar": {
+				"label": "Calendarios",
+				"alias": "calendarios"
+			},
+			"maps": {
+				"label": "Mapas",
+				"alias": "mapas"
+			},
+			"stories": {
+				"label": "Historias",
+				"alias": "historias"
+			},
+			"alias": "apps",
+			"calendars": {
+				"alias": "calendarios"
+			}
+		},
+		"account": {
+			"label": "Cuenta",
+			"credentials": {
+				"label": "Login / contraseña",
+				"alias": "auths"
+			},
+			"contact": {
+				"label": "Datos de contacto",
+				"alias": "contacto"
+			},
+			"billing": {
+				"label": "Facturación",
+				"alias": "facturación"
+			},
+			"content": {
+				"label": "Contenido",
+				"images": {
+					"label": "Imágenes",
+					"alias": "imagenes"
+				},
+				"video": {
+					"label": "Vídeo",
+					"alias": "vídeo"
+				},
+				"files": {
+					"label": "Archivos",
+					"alias": "archivos"
+				},
+				"alias": "contenido",
+				"videos": {
+					"alias": "vídeos"
+				},
+				"image": {
+					"alias": "imagene"
+				},
+				"file": {
+					"alias": "archivo"
+				}
+			},
+			"video": {
+				"label": "Vídeos"
+			},
+			"files": {
+				"label": "Archivos"
+			},
+			"alias": "cuenta",
+			"auths": {
+				"alias": "auths"
+			}
+		},
+		"people": {
+			"alias": "personas",
+			"label": "Personas"
+		},
+		"content": {
+			"alias": "contenido",
+			"label": "Contenido"
+		},
+		"search": {
+			"alias": "buscar",
+			"label": "Buscar"
+		},
+		"projects": {
+			"alias": "proyectos",
+			"label": "Proyectos"
+		},
+		"story": {
+			"alias": "hoistoria"
+		},
+		"profile": {
+			"alias": "perfil"
+		},
+		"auth": {
+			"alias": "auth",
+			"options": {
+				"alias": "auth_options"
+			}
+		},
+		"logout": {
+			"alias": "cierre"
+		},
+		"login": {
+			"alias": "login"
+		},
+		"signup": {
+			"alias": "enrolar"
+		}
+	},
+	"auth": {
+		"logout": {
+			"label": "Cierre de sesión",
+			"alias": "cierre"
+		},
+		"login": {
+			"label": "Login",
+			"alias": "login"
+		}
+	},
+	"footer": {
+		"contact": {
+			"label": "contáctenos",
+			"support": {
+				"label": "Apoyo",
+				"alias": "apoyo"
+			},
+			"sales": {
+				"label": "Ventas",
+				"alias": "ventas"
+			},
+			"advertising": {
+				"label": "Publicidad",
+				"alias": "publicidad"
+			}
+		},
+		"legal": {
+			"label": "Legal",
+			"privacy": {
+				"label": "Política de privacidad"
+			},
+			"terms": {
+				"label": "Términos y condiciones"
+			},
+			"copyright": {
+				"label": "derechos de autor"
+			}
+		},
+		"about": {
+			"alias": "sobre",
+			"staff": {
+				"label": "Empleados",
+				"alias": "empleados"
+			},
+			"jobs": {
+				"label": "Puestos de trabajo",
+				"alias": "trabajo"
+			},
+			"mission": {
+				"label": "Msión",
+				"alias": "misión"
+			},
+			"label": "About Us"
+		}
+	},
+	"account": {
+		"authentication_options": {
+			"label": "Opciones Iniciar sesión"
+		},
+		"cancel": {
+			"label": "Cancelar"
+		},
+		"connect": {
+			"label": "Conectar"
+		}
+	},
+	"Hello": "¡Hola"
+}

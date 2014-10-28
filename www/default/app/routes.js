@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('home', {
+        res.render('pages/home', {
             title : res.__("page.home.html.title:Welcome")
         });
     });
@@ -120,30 +120,130 @@ module.exports = function(app, passport) {
 // =============================================================================
     // show the home page (will also have our login links)
     app.get('/' + i18n.__('nav.account.alias'), isLoggedIn, function(req, res) {
-        res.render('account/home', {
+        res.render('pages/account', {
             title : res.__('page.account.html.title:Account'),
             layout: vLayout(req)
         });
     });
+    
+    // show the auth options page
+    app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
+        res.render('pages/auth/options', {
+            title : res.__('page.auth.html.title:Login Options'),
+            layout: vLayout(req)
+        });
+    });
+    
+     // show the account landing page
+    app.get('/' + i18n.__('nav.account.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account', {
+            user : req.user,
+            title : res.__('page.account.html.title:Account Management'),
+            layout: vLayout(req)
+        });
+    });
 
-    // show the home page (will also have our login links)
+    // show the optiosn for logging in
     app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), isLoggedIn, function(req, res) {
-        res.render('account/auths', {
+        res.render('pages/account/auths', {
             user : req.user,
             title : res.__('page.account.auths.html.title:Access Options'),
             layout: vLayout(req)
         });
     });
 
-    // show the auth options page
-    app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
-        res.render('auth/options', {
-            title : res.__('page.auth.html.title:Login Options'),
+    // show the account contact info page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/contact', {
+            user : req.user,
+            title : res.__('page.account.contact.html.title:Contact Info'),
             layout: vLayout(req)
         });
     });
 
-    // PROFILE SECTION =========================
+    // show the account billing history
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/billing', {
+            user : req.user,
+            title : res.__('page.account.billing.html.title:Billing History'),
+            layout: vLayout(req)
+        });
+    });
+ 
+    // show the account content landing page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content', {
+            user : req.user,
+            title : res.__('page.account.content.html.title:Content and Media Library'),
+            layout: vLayout(req)
+        });
+    });
+    
+    /////////////////////////////////////////
+    //  Object or content list routes
+    ////////////////////////////////////////
+
+    // show the account content images page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.images.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/images', {
+            user : req.user,
+            title : res.__('page.account.content.images.html.title:Image Library'),
+            layout: vLayout(req)
+        });
+    }); 
+    
+    // show the account content videos page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.videos.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/videos', {
+            user : req.user,
+            title : res.__('page.account.content.videos.html.title:Video Library'),
+            layout: vLayout(req)
+        });
+    });  
+    
+    // show the account content files page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.files.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/files', {
+            user : req.user,
+            title : res.__('page.account.content.files.html.title:File Storage'),
+            layout: vLayout(req)
+        });
+    }); 
+    
+    /////////////////////////////////////////
+    //  Individual object or content routes
+    ////////////////////////////////////////
+    
+    // show the account content images page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.image.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/image', {
+            user : req.user,
+            title : res.__('page.account.content.image.html.title:Manage Image'),
+            layout: vLayout(req)
+        });
+    }); 
+    
+    // show the account content videos page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.video.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/video', {
+            user : req.user,
+            title : res.__('page.account.content.video.html.title:Manage Video'),
+            layout: vLayout(req)
+        });
+    });  
+    
+    // show the account content files page
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.file.alias'), isLoggedIn, function(req, res) {
+        res.render('pages/account/content/file', {
+            user : req.user,
+            title : res.__('page.account.content.file.html.title:Manage File'),
+            layout: vLayout(req)
+        });
+    });
+    
+    /////////////////////////////////////////
+    // PROFILE SECTION 
+    /////////////////////////////////////////
     app.get('/' + i18n.__('nav.profile.alias'), isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user : req.user,
