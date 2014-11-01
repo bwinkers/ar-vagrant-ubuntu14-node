@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // i18n ========================================================================
 i18n.configure({
     locales: ['en-US', 'es-US'],
-    defaultLocale: 'es-US',
+    defaultLocale: 'en-US',
     cookie: 'locale',
     directory: "" + __dirname + "/locales",
     objectNotation: true

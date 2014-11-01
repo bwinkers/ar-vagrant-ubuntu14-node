@@ -2,6 +2,8 @@ module.exports = function(app, passport) {
     
     i18n = app.get('i18n');
     
+    var home = require('../controllers/home');
+
     if(app.settings.env == 'development') {
         console.log('The Routes know the enviro');
     }
@@ -9,11 +11,7 @@ module.exports = function(app, passport) {
 // default route ===============================================================
 
     // show the home page (will also have our login links)
-    app.get('/', function(req, res) {
-        res.render('pages/home', {
-            title : res.__("page.home.html.title:Welcome")
-        });
-    });
+    app.get('/', home.index);
         
 // =============================================================================
 // Static page routes for serving SEO pages
@@ -39,6 +37,7 @@ module.exports = function(app, passport) {
     app.get('/' + i18n.__('nav.stories.alias'), function(req, res) {
         res.render('pages/stories', {
             title : res.__('page.stories.html.title:Stories'),
+         //   activenav : res.__('page.stories.html.title:Stories'),
             layout: vLayout(req)
         });
     });
@@ -110,7 +109,7 @@ module.exports = function(app, passport) {
     // Calendars application route ==============================
     app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.calendars.alias'), function(req, res) {
         res.render('pages/apps/calendars', {
-            title : res.__('page.apps.maps.html.title:Calendars'),
+            title : res.__('page.apps.calendars.html.title:Calendars'),
             layout: vLayout(req)
         });
     });
@@ -118,51 +117,29 @@ module.exports = function(app, passport) {
 // =============================================================================
 // Member Account Routes
 // =============================================================================
-    // show the home page (will also have our login links)
-    app.get('/' + i18n.__('nav.account.alias'), isLoggedIn, function(req, res) {
-        res.render('pages/account', {
-            title : res.__('page.account.html.title:Account'),
-            layout: vLayout(req)
-        });
+
+    // show the account landing page
+    app.get('/' + i18n.__('nav.account.alias'), requireLogin, function(req, res) {
+        render('pages/account', 'page.account.html.title:Account Management', req, res);
     });
     
     // show the auth options page
     app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
-        res.render('pages/auth/options', {
-            title : res.__('page.auth.html.title:Login Options'),
-            layout: vLayout(req)
-        });
+        render('pages/auth/options', 'page.auth.html.title:Login Options', req, res);
     });
     
-     // show the account landing page
-    app.get('/' + i18n.__('nav.account.alias'), isLoggedIn, function(req, res) {
-        res.render('pages/account', {
-            user : req.user,
-            title : res.__('page.account.html.title:Account Management'),
-            layout: vLayout(req)
-        });
-    });
-
     // show the optiosn for logging in
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), isLoggedIn, function(req, res) {
-        res.render('pages/account/auths', {
-            user : req.user,
-            title : res.__('page.account.auths.html.title:Access Options'),
-            layout: vLayout(req)
-        });
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), requireLogin, function(req, res) {
+        render('pages/account/auths', 'page.account.auths.html.title:Access Options', req, res);
     });
 
     // show the account contact info page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), isLoggedIn, function(req, res) {
-        res.render('pages/account/contact', {
-            user : req.user,
-            title : res.__('page.account.contact.html.title:Contact Info'),
-            layout: vLayout(req)
-        });
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), requireLogin, function(req, res) {
+        render('pages/account/contact', 'page.account.contact.html.title:Contact Info', req, res);
     });
 
     // show the account billing history
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), requireLogin, function(req, res) {
         res.render('pages/account/billing', {
             user : req.user,
             title : res.__('page.account.billing.html.title:Billing History'),
@@ -171,7 +148,7 @@ module.exports = function(app, passport) {
     });
  
     // show the account content landing page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content', {
             user : req.user,
             title : res.__('page.account.content.html.title:Content and Media Library'),
@@ -184,7 +161,7 @@ module.exports = function(app, passport) {
     ////////////////////////////////////////
 
     // show the account content images page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.images.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.images.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/images', {
             user : req.user,
             title : res.__('page.account.content.images.html.title:Image Library'),
@@ -193,7 +170,7 @@ module.exports = function(app, passport) {
     }); 
     
     // show the account content videos page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.videos.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.videos.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/videos', {
             user : req.user,
             title : res.__('page.account.content.videos.html.title:Video Library'),
@@ -202,7 +179,7 @@ module.exports = function(app, passport) {
     });  
     
     // show the account content files page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.files.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.files.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/files', {
             user : req.user,
             title : res.__('page.account.content.files.html.title:File Storage'),
@@ -215,7 +192,7 @@ module.exports = function(app, passport) {
     ////////////////////////////////////////
     
     // show the account content images page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.image.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.image.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/image', {
             user : req.user,
             title : res.__('page.account.content.image.html.title:Manage Image'),
@@ -224,7 +201,7 @@ module.exports = function(app, passport) {
     }); 
     
     // show the account content videos page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.video.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.video.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/video', {
             user : req.user,
             title : res.__('page.account.content.video.html.title:Manage Video'),
@@ -233,7 +210,7 @@ module.exports = function(app, passport) {
     });  
     
     // show the account content files page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.file.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias') + '/' + i18n.__('nav.account.content.file.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content/file', {
             user : req.user,
             title : res.__('page.account.content.file.html.title:Manage File'),
@@ -244,7 +221,7 @@ module.exports = function(app, passport) {
     /////////////////////////////////////////
     // PROFILE SECTION 
     /////////////////////////////////////////
-    app.get('/' + i18n.__('nav.profile.alias'), isLoggedIn, function(req, res) {
+    app.get('/' + i18n.__('nav.profile.alias'), requireLogin, function(req, res) {
         res.render('profile.ejs', {
             user : req.user,
         });
@@ -394,7 +371,7 @@ module.exports = function(app, passport) {
 // user account will stay active in case they want to reconnect in the future
 
     // local -----------------------------------
-    app.get('/unlink/local', isLoggedIn, function(req, res) {
+    app.get('/unlink/local', requireLogin, function(req, res) {
         var user            = req.user;
         user.local.email    = undefined;
         user.local.password = undefined;
@@ -404,7 +381,7 @@ module.exports = function(app, passport) {
     });
 
     // facebook -------------------------------
-    app.get('/unlink/facebook', isLoggedIn, function(req, res) {
+    app.get('/unlink/facebook', requireLogin, function(req, res) {
         var user            = req.user;
         user.facebook.token = undefined;
         user.save(function(err) {
@@ -413,7 +390,7 @@ module.exports = function(app, passport) {
     });
 
     // twitter --------------------------------
-    app.get('/unlink/twitter', isLoggedIn, function(req, res) {
+    app.get('/unlink/twitter', requireLogin, function(req, res) {
         var user           = req.user;
         user.twitter.token = undefined;
         user.save(function(err) {
@@ -422,7 +399,7 @@ module.exports = function(app, passport) {
     });
 
     // google ---------------------------------
-    app.get('/unlink/google', isLoggedIn, function(req, res) {
+    app.get('/unlink/google', requireLogin, function(req, res) {
         var user          = req.user;
         user.google.token = undefined;
         user.save(function(err) {
@@ -433,12 +410,36 @@ module.exports = function(app, passport) {
 
 };
 
+// render the view
+function render(page, title, req, res, navpath) {
+    res.render(page, {
+        user : req.user,
+        title : res.__(title),
+        layout: vLayout(req),
+        loggedIn : isLoggedIn(req, res),
+        nav : navPath(req, res)
+    });
+}
+
+// Get the nav path elemnst to be highlighted
+function navPath(req, res) {
+    
+}
+
 // route middleware to ensure user is logged in
-function isLoggedIn(req, res, next) {
+function requireLogin(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
 	res.redirect('/auth');
+}
+
+// route middleware to ensure user is logged in
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return true;
+
+	return false;
 }
 
 // 

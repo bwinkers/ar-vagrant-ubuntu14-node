@@ -1,6 +1,5 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -12,19 +11,20 @@
     </div>
     <div class="collapse navbar-collapse pull-right">
       <ul id="ar-nav" class="nav navbar-nav">
-        <li><a href="#/{{__ 'nav.stories.alias:stories'}}">{{__ 'nav.stories.label:Stories'}}</a></li>  
-        <li><a href="#/{{__ 'nav.people.alias:people'}}">{{__ 'nav.people.label:People'}}</a></li>
-        <li><a href="#/{{__ 'nav.content.alias:content'}}">{{__ 'nav.content.label:Content'}}</a></li>
-        <li class="dropdown">
+        <li id="ar-nl1-{{__ 'nav.stories.alias:stories'}}"><a href="#/{{__ 'nav.stories.alias:stories'}}">{{__ 'nav.stories.label:Stories'}}</a></li>  
+        <li id="ar-nl1-{{__ 'nav.people.alias:people'}}"><a href="#/{{__ 'nav.people.alias:people'}}">{{__ 'nav.people.label:People'}}</a></li>
+        <li id="ar-nl1-{{__ 'nav.content.alias:content'}}"><a href="#/{{__ 'nav.content.alias:content'}}">{{__ 'nav.content.label:Content'}}</a></li>
+        <li class="dropdown ar-nav1-{{__ 'nav.webapps.alias:webapps'}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'nav.webapps.label:Apps'}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.profiles.alias:profiles'}}">{{__ 'nav.webapps.profiles.label:Profiles'}}</a></li>
-            <li><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.calendar.alias:calendars'}}">{{__ 'nav.webapps.calendar.label:Calendars'}}</a></li>
-            <li><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.maps.alias:maps'}}">{{__ 'nav.webapps.maps.label:Maps'}}</a></li>
-            <li><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.stories.alias:stories'}}">{{__ 'nav.webapps.stories.label:Stories'}}</a></li>
+            <li id="ar-nl2-{{__ 'nav.webapps.profiles.alias:profiles'}}"><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.profiles.alias:profiles'}}">{{__ 'nav.webapps.profiles.label:Profiles'}}</a></li>
+            <li id="ar-nl2-{{__ 'nav.webapps.calendars.alias:calendars'}}"><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.calendar.alias:calendars'}}">{{__ 'nav.webapps.calendar.label:Calendars'}}</a></li>
+            <li id="ar-nl2-{{__ 'nav.webapps.maps.alias:maps'}}"><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.maps.alias:maps'}}">{{__ 'nav.webapps.maps.label:Maps'}}</a></li>
+            <li id="ar-nl2-{{__ 'nav.webapps.stories.alias:stories'}}"><a href="#/{{__ 'nav.webapps.alias:apps'}}/{{__ 'nav.webapps.stories.alias:stories'}}">{{__ 'nav.webapps.stories.label:Stories'}}</a></li>
           </ul>
-        </li>  
-        <li class="dropdown">
+        </li> 
+        {{#if loggedIn }}
+        <li class="dropdown ar-nav1-{{__ 'nav.account.alias:account'}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{__ 'nav.account.label:Account'}} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#/{{__ 'nav.account.alias:account'}}/{{__ 'nav.account.credentials.alias:auths'}}">{{__ 'nav.account.credentials.label:Login / Password'}}</a></li>
@@ -38,10 +38,14 @@
             <li><a href="#/{{__ 'nav.account.alias'}}/{{__ 'nav.account.content.alias'}}/{{__ 'nav.account.content.video.alias:video'}}">{{__ 'nav.account.content.video.label:Video'}}</a></li>
             <li><a href="#/{{__ 'nav.account.alias'}}/{{__ 'nav.account.content.alias'}}/{{__ 'nav.account.content.files.alias:files'}}">{{__ 'nav.account.content.files.label:Files'}}</a></li>
             <li class="divider"></li>
+            <li><a href="#/{{__ 'nav.cancel.alias:cancel'}}">{{__ 'nav.cancel.label:Cancel'}}</a></li>
+            <li class="divider"></li>
             <li><a href="#/{{__ 'auth.logout.alias:logout'}}">{{__ 'auth.logout.label:Logout'}}</a></li>
           </ul>
         </li>
+        {{else}}
+        <li id="ar-nl1-{{__ 'nav.signup.alias:signup'}}"><a href="#/{{__ 'nav.auth.alias:auth'}}">{{__ 'nav.signup_login.label:Signup / Login'}}</a></li>
+        {{/if}}
       </ul>
     </div><!--/.nav-collapse -->
-  </div>
 </div>

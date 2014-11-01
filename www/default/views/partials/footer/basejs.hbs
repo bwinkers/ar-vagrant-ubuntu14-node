@@ -26,7 +26,6 @@ $(window).resize(function(){
     };
 });
 </script>
-
 <script>
 (function(window,undefined){
 // Check Location
@@ -34,8 +33,7 @@ if ( document.location.protocol === 'file:' ) {
 alert('The HTML5 History API (and thus History.js) do not work on files, please upload it to a server.');
 }
 // Establish Variables
-var
-State = History.getState(),
+var State = History.getState(),
 $log = $('#log');
 // Log Initial State
 History.log('initial:', State.data, State.title, State.url);
@@ -51,6 +49,8 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
              //$('#main').html($(data).find('#main *'));
              //$('#notification-bar').text('The page has been successfully loaded');
              $( "#ar-content" ).html(data);
+             setTitle($('#ar-spa-title').text());
+             setNav();
           },
           error: function() {
              $('#notification-bar').text('An error occurred');
@@ -60,4 +60,12 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
     });
 
 })(window);
+
+function setTitle(txt) {
+    $(document).prop('title', txt);
+}
+
+function setNav(navElements) {
+    
+}
 </script>

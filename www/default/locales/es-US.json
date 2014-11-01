@@ -299,10 +299,10 @@
 				"alias": "trabajo"
 			},
 			"mission": {
-				"label": "Msión",
+				"label": "Misión",
 				"alias": "misión"
 			},
-			"label": "About Us"
+			"label": "Sobre nosotros"
 		}
 	},
 	"account": {
