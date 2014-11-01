@@ -1,18 +1,82 @@
 module.exports = function(app, passport) {
     
-    i18n = app.get('i18n');
+    var i18n = app.get('i18n');
     
     var home = require('../controllers/home');
+    var common = require('../controllers/common');
+    var account = require('../controllers/account');
+    var auth = require('../controllers/auth');
+    var signup = require('../controllers/signup');
+    var webapp = require('../controllers/webapp');
+    var directory = require('../controllers/directory');
+    var people = require('../controllers/people');
+    var profile = require('../controllers/profile');
+    var story = require('../controllers/story');
 
     if(app.settings.env == 'development') {
         console.log('The Routes know the enviro');
     }
-    
-// default route ===============================================================
 
-    // show the home page (will also have our login links)
+// =============================================================================   
+// Default route / Homepage / Welcome Page =====================================
+// =============================================================================
     app.get('/', home.index);
+    
+// =============================================================================
+// Business Listings
+// =============================================================================
+    // shops
+    app.get('/' + i18n.__('nav.shops.alias:shops'), profile.landing);
+    // shop/:shop_alias
+    app.get('/' + i18n.__('nav.shop.alias:shop'), profile.single);
+    
+// =============================================================================
+// Stories / Projects / Articles - Multimedia content
+// =============================================================================
+    // stories
+    app.get('/' + i18n.__('nav.stories.alias:stories'), story.landing);
         
+// =============================================================================
+// People Directory
+// =============================================================================
+    // people
+    app.get('/' + i18n.__('nav.people.alias:people'), people.landing);       
+    
+// =============================================================================
+// Common Legal - Privacy / Terms / Warranty / Copyright
+// =============================================================================
+    // legal
+    app.get('/' + i18n.__('nav.legal.alias:legal'), common.legal);
+    // legal/privacy
+    app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.privacy.alias:privacy'), common.privacy);  
+    // legal/terms
+    app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.terms.alias:terms'), common.terms);
+    // legal/warranty
+    app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.warranty.alias:warranty'), common.warranty); 
+    // legal/copyright
+    app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.copyright.alias:copyright'), common.copyright); 
+    // legal/accceptable_use
+    app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.acceptable_use.alias:acceptable_use'), common.acceptable_use); 
+    
+// =============================================================================
+// Commona Company Info - History / Jobs /Guidelines / Mission / Contact / Staff
+// =============================================================================
+    // site/history
+    app.get('/' + i18n.__('nav.site.alias:site'), common.site);  
+    // site/history
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.history.alias:history'), common.history);  
+    // site/community_guidelines
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.community_guidelines.alias:community_guidelines'), common.community_guidelines); 
+    // site/jobs
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.jobs.alias:jobs'), common.jobs); 
+    // site/mission
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.mission.alias:mission'), common.mission);
+    // site/contact
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.contact.alias:contact'), common.contact); 
+    // site/staff
+    app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.staff.alias:staff'), common.staff); 
+
+
 // =============================================================================
 // Static page routes for serving SEO pages
 // =============================================================================
