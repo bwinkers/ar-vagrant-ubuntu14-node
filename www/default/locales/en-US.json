@@ -38,11 +38,6 @@
 			"h3": "page.shop.h3",
 			"html": {
 				"title": "Shop"
-			},
-			"landing": {
-				"html": {
-					"title": "Shop Listings - Browse and Search"
-				}
 			}
 		},
 		"content": {
@@ -113,7 +108,7 @@
 					"title": "Stories"
 				}
 			},
-			"calendars": {
+                        "calendars": {
 				"html": {
 					"title": "Calendars"
 				}
@@ -169,8 +164,8 @@
 			},
 			"alias": "apps",
 			"calendars": {
-				"alias": "calendars",
-				"label": "Calendars"
+				"alias": "calendars",   
+                                "label": "Calendars"
 			}
 		},
 		"account": {
@@ -267,45 +262,6 @@
 		"cancel": {
 			"alias": "cancel",
 			"label": "Cancel"
-		},
-		"legal": {
-			"alias": "legal"
-		},
-		"privacy": {
-			"alias": "privacy"
-		},
-		"terms": {
-			"alias": "terms"
-		},
-		"warranty": {
-			"alias": "warranty"
-		},
-		"copyright": {
-			"alias": "copyright"
-		},
-		"acceptable_use": {
-			"alias": "acceptable_use"
-		},
-		"site": {
-			"alias": "site"
-		},
-		"history": {
-			"alias": "history"
-		},
-		"community_guidelines": {
-			"alias": "community_guidelines"
-		},
-		"jobs": {
-			"alias": "jobs"
-		},
-		"mission": {
-			"alias": "mission"
-		},
-		"contact": {
-			"alias": "contact"
-		},
-		"staff": {
-			"alias": "staff"
 		}
 	},
 	"auth": {
