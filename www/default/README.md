@@ -53,7 +53,7 @@ files.
 Start the server in DEV mode, with nodemon watching the app for a relaunch,
 watchers on scripts and less files for rebuild.
 
-    $ grunt server
+    $ sudogrunt server
 
 Note: Windows users, for some reason the grunt shell task will not launch
 mongod during runtime (so the node server will crash).  Be sure to launch

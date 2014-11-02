@@ -172,8 +172,9 @@ module.exports = function(app, passport) {
 // =============================================================================
 
     // show the account landing page
+    // account
     app.get('/' + i18n.__('nav.account.alias'), requireLogin, function(req, res) {
-        render('pages/account', 'page.account.html.title:Account Management', req, res);
+        render('pages/account/landing', 'page.account.html.title:Account Management', req, res);
     });
     
     // show the auth options page
