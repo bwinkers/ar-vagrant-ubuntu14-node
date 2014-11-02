@@ -5,7 +5,6 @@
         $LAB
         .script("/js/knockback-full-stack.min.js")
         .script("/js/ie10-workaround.js")
-//        .script("/js/jquery.history.js")
         .script("/js/cacheprovider.js").wait();      
 </script>
 <!-- Latest compiled and minified JavaScript -->
@@ -46,15 +45,15 @@ History.Adapter.bind(window,'statechange',function(){ // Note: We are using stat
 
     $.ajax(State.url, {
           success: function(data) {
-             //$('#main').html($(data).find('#main *'));
-             //$('#notification-bar').text('The page has been successfully loaded');
              $( "#ar-content" ).html(data);
              setTitle($('#ar-spa-title').text());
-             setNav();
+             setArNl1($('#ar-spa-nl1').text());
+             setArNl2($('#ar-spa-nl2').text());
+             setArNl3($('#ar-spa-nl3').text());
           },
           error: function() {
              $('#notification-bar').text('An error occurred');
-             alert('damn');
+             alert('darn it all');
           }
        });
     });
@@ -65,7 +64,22 @@ function setTitle(txt) {
     $(document).prop('title', txt);
 }
 
-function setNav(navElements) {
-    
+function setArNl1(id) {
+    // Remove active from other ActiveRules Navigation Level 1 elements
+    $("li[id^=ar-nl1]").removeClass('active');
+    // Set the current element active
+    $('#' + id).addClass('active');
+}
+function setArNl2(id) {
+    // Remove active from other ActiveRules Navigation Level 1 elements
+    $("li[id^=ar-nl2]").removeClass('active');
+    // Set the current element active
+    $('#' + id).addClass('active');
+}
+function setArNl3(id) {
+    // Remove active from other ActiveRules Navigation Level 1 elements
+    $("li[id^=ar-nl3]").removeClass('active');
+    // Set the current element active
+    $('#' + id).addClass('active');
 }
 </script>

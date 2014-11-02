@@ -1,46 +1,59 @@
 module.exports = function(app, passport) {
     
+    // =========================================================================
+    // =========================================================================
+    // ActiveRules is meant to support all routes.
+    // Restrictions per site should be enforced within the application.
+    // =========================================================================
+    // =========================================================================
+    
+    // Local copy of the i18n library so we can parse these early.
+    // NOTE!!! These routes get parsed ONCE on startup of the ndoe server.
+    // To server localized url routes you need a separate web app for each language.
+    // Most apps don't need loclaized routes. 
+    // Authors belief is that they should always be supported.
     var i18n = app.get('i18n');
     
+    // =========================================================================
+    // Core ActiveRules Routes
+    // =========================================================================
+    // Homepage
     var home = require('../controllers/home');
+    // Common routes for most all web sites
     var common = require('../controllers/common');
-    var account = require('../controllers/account');
-    var auth = require('../controllers/auth');
-    var signup = require('../controllers/signup');
-    var webapp = require('../controllers/webapp');
-    var directory = require('../controllers/directory');
-    var people = require('../controllers/people');
-    var profile = require('../controllers/profile');
+    
+    // =========================================================================
+    // Service specific controllers supported by ActiveRules.
+    // These many standard ways to slice and dice data for UI consumption.
+    // =========================================================================
+    // Content
     var story = require('../controllers/story');
+    var content = require('../controllers/content');
+    // People and Organizations
+    var people = require('../controllers/people');
+    var directory = require('../controllers/directory');
+    var profile = require('../controllers/profile');
+    var shop = require('../controllers/shop');
+    // Authentication, local membership not required
+    var auth = require('../controllers/auth');
+    // Membership
+    var signup = require('../controllers/signup');
+    var account = require('../controllers/account');
+    // Account Services
+    var images = require('../controllers/image');
+    var video = require('../controllers/video');
+    var files = require('../controllers/file');
+    // Web Application Offerings, related to app controllers above
+    var webapp = require('../controllers/webapp');
 
-    if(app.settings.env == 'development') {
-        console.log('The Routes know the enviro');
-    }
+    
+
 
 // =============================================================================   
-// Default route / Homepage / Welcome Page =====================================
+// Default route / Homepage / Welcome Page 
 // =============================================================================
     app.get('/', home.index);
     
-// =============================================================================
-// Business Listings
-// =============================================================================
-    // shops
-    app.get('/' + i18n.__('nav.shops.alias:shops'), profile.landing);
-    // shop/:shop_alias
-    app.get('/' + i18n.__('nav.shop.alias:shop'), profile.single);
-    
-// =============================================================================
-// Stories / Projects / Articles - Multimedia content
-// =============================================================================
-    // stories
-    app.get('/' + i18n.__('nav.stories.alias:stories'), story.landing);
-        
-// =============================================================================
-// People Directory
-// =============================================================================
-    // people
-    app.get('/' + i18n.__('nav.people.alias:people'), people.landing);       
     
 // =============================================================================
 // Common Legal - Privacy / Terms / Warranty / Copyright
@@ -58,8 +71,9 @@ module.exports = function(app, passport) {
     // legal/accceptable_use
     app.get('/' + i18n.__('nav.legal.alias:legal') + '/' + i18n.__('nav.acceptable_use.alias:acceptable_use'), common.acceptable_use); 
     
+    
 // =============================================================================
-// Commona Company Info - History / Jobs /Guidelines / Mission / Contact / Staff
+// Common Company Info - History / Jobs /Guidelines / Mission / Contact / Staff
 // =============================================================================
     // site/history
     app.get('/' + i18n.__('nav.site.alias:site'), common.site);  
@@ -75,108 +89,83 @@ module.exports = function(app, passport) {
     app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.contact.alias:contact'), common.contact); 
     // site/staff
     app.get('/' + i18n.__('nav.site.alias:site') + '/' + i18n.__('nav.staff.alias:staff'), common.staff); 
-
-
+    
 // =============================================================================
-// Static page routes for serving SEO pages
+// Common Contact Pages - Support / Sales/ Advertising / Billing / Shipping / Receiving
 // =============================================================================
+    // contact
+    app.get('/' + i18n.__('nav.contact.alias:contact'), common.contact);  
+    // contact/sales
+    app.get('/' + i18n.__('nav.contact.alias:contact') + '/' + i18n.__('nav.sales.alias:sales'), common.sales);  
+    // contact/advertising
+    app.get('/' + i18n.__('nav.contact.alias:contact') + '/' + i18n.__('nav.support.alias:support'), common.support); 
+    // contact/billing
+    app.get('/' + i18n.__('nav.contact.alias:contact') + '/' + i18n.__('nav.advertising.alias:advertising'), common.advertising); 
+    // site/mission
+    app.get('/' + i18n.__('nav.contact.alias:contact') + '/' + i18n.__('nav.billing.alias:billing'), common.billing);
+    // contact/shipping
+    app.get('/' + i18n.__('nav.contact.alias:contact') + '/' + i18n.__('nav.shipping.alias:shipping'), common.shipping); 
 
-    // Shops landing page ==============================
-    app.get('/' + i18n.__('nav.shops.alias'), function(req, res) {
-        res.render('pages/shops', {
-            title : res.__('page.shops.html.title:Shops'),
-            layout: vLayout(req)
-        });
-    });
+    
+// =============================================================================
+// Stories / Projects / Articles - Multimedia content
+// =============================================================================
+    // stories
+    app.get('/' + i18n.__('nav.stories.alias:stories'), story.landing);
 
-    // Shop layout ==============================
-    app.get('/' + i18n.__('nav.shop.alias'), function(req, res) {
-        res.render('pages/shop', {
-                title : res.__('page.shop.html.title:Shop'),
-                layout: vLayout(req)
-        });
-    });
+    
+// =============================================================================
+// Content - Browse or Search user provided digital media content
+// =============================================================================
+    // content
+    app.get('/' + i18n.__('nav.content.alias:content'), content.landing); 
+    
+        
+// =============================================================================
+// People - "Find the RIGHT Person" driven interface
+// =============================================================================
+    // people
+    app.get('/' + i18n.__('nav.people.alias:people'), people.landing); 
+    
+   
+// =============================================================================
+// Directory - Data focused interface to a company or person, links to profiles.
+// =============================================================================
+    // directory
+    //app.get('/' + i18n.__('nav.directory.alias:directory'), directory.landing); 
+    
+    
+// =============================================================================
+// Profile - Marketing focused interface to a company or person, in directory.
+// =============================================================================
+    // profile
+    app.get('/' + i18n.__('nav.profile.alias:profile'), profile.landing);
+    
+    
+// =============================================================================
+// Shop Listings - differentiated from business becasue of the sense of location
+// =============================================================================
+    // shops
+    app.get('/' + i18n.__('nav.shops.alias:shops'), shop.landing);
+    // shop/:shop_alias
+    app.get('/' + i18n.__('nav.shop.alias:shop'), shop.single);   
+    
+    
+// =============================================================================
+// Entry point for Applications supported by this site. Doesn't require Authentication.
+// This provides persistent evergreen target for members and visitors alike.
+// =============================================================================
+    // apps
+    app.get('/' + i18n.__('nav.webapp.alias:apps'), webapp.landing);
+    // apps/profiles
+    app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.profiles.alias:profiles'), webapp.profiles);
+    // apps/maps
+    app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.maps.alias:maps'), webapp.maps);
+    // apps/stories
+    app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.stories.alias:stories'), webapp.stories);  
+    // apps/calendars
+    app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.calendars.alias:calendars'), webapp.calendars); 
 
-    // Stories landing page ==============================
-    app.get('/' + i18n.__('nav.stories.alias'), function(req, res) {
-        res.render('pages/stories', {
-            title : res.__('page.stories.html.title:Stories'),
-         //   activenav : res.__('page.stories.html.title:Stories'),
-            layout: vLayout(req)
-        });
-    });
-
-    // Story layout ==============================
-    app.get('/' + i18n.__('nav.story.alias'), function(req, res) {
-        res.render('pages/story', {
-                title : res.__('page.story.html.title:Story'),
-                layout: vLayout(req)
-        });
-    });
-
-    // People landing page ==============================
-    app.get('/' + i18n.__('nav.people.alias'), function(req, res) {
-        res.render('pages/people', {
-            title : res.__('page.people.html.title:People'),
-            layout: vLayout(req) 
-        });
-    });
-
-    // Profile route ==============================
-    app.get('/' + i18n.__('nav.profile.alias'), function(req, res) {
-            res.render('pages/profile', {
-                title : res.__('page.profile.html.title:Profile'),
-                layout: vLayout(req)
-            });
-    });
-
-    // Content route ==============================
-    app.get('/' + i18n.__('nav.content.alias'), function(req, res) {
-            res.render('pages/content', {
-                title : res.__('page.content.html.title:Content'),
-                layout: vLayout(req) 
-            });
-    });
-
-    // Apps route ==============================
-    app.get('/' + i18n.__('nav.webapps.alias'), function(req, res) {
-        res.render('pages/apps', {
-            title : res.__('page.apps.html.title:Apps'),
-            layout: vLayout(req) 
-        });
-    });
-
-    // Profile application route ==============================
-    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.profiles.alias'), function(req, res) {
-        res.render('pages/apps/profiles', {
-            title : res.__('page.apps.profiles.html.title:Profiles'),
-            layout: vLayout(req) 
-        });
-    });
-
-    // Stories application route ==============================
-    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.stories.alias'), function(req, res) {
-        res.render('pages/apps/stories', {
-            title : res.__('page.apps.stories.html.title:Stories'),
-            layout: vLayout(req)  
-        });
-    });
-
-    // Maps application route ==============================
-    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.maps.alias'), function(req, res) {
-        res.render('pages/apps/maps', {
-            title : res.__('page.apps.maps.html.title:Maps'),
-            layout: vLayout(req)  
-        });
-    });
-
-    // Calendars application route ==============================
-    app.get('/' + i18n.__('nav.webapps.alias') + '/' + i18n.__('nav.webapps.calendars.alias'), function(req, res) {
-        res.render('pages/apps/calendars', {
-            title : res.__('page.apps.calendars.html.title:Calendars'),
-            layout: vLayout(req)
-        });
-    });
 
 // =============================================================================
 // Member Account Routes
@@ -518,7 +507,7 @@ function vLayout(req, layout) {
     var is_ajax_request = req.xhr;
     
     if(is_ajax_request) {
-        vlayout = 'json';
+        vlayout = 'spa';
     } 
     
     return vlayout;

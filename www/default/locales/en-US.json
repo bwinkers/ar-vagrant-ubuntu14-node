@@ -30,6 +30,11 @@
 		"people": {
 			"html": {
 				"title": "People"
+			},
+			"landing": {
+				"html": {
+					"title": "People - Find the right person"
+				}
 			}
 		},
 		"shop": {
@@ -48,6 +53,11 @@
 		"content": {
 			"html": {
 				"title": "Content"
+			},
+			"landing": {
+				"html": {
+					"title": "Content - Browse and Search"
+				}
 			}
 		},
 		"stories": {
@@ -89,6 +99,11 @@
 					"html": {
 						"title": "Manage Video"
 					}
+				},
+				"files": {
+					"html": {
+						"title": "File Storage"
+					}
 				}
 			},
 			"contact": {
@@ -120,6 +135,80 @@
 			},
 			"html": {
 				"title": "Apps"
+			}
+		},
+		"story": {
+			"landing": {
+				"html": {
+					"title": "Stories provide a multimedia representation of anything."
+				}
+			}
+		},
+		"webapp": {
+			"profiles": {
+				"html": {
+					"title": "Profiles - Showcase your members"
+				}
+			},
+			"maps": {
+				"html": {
+					"title": "Maps - Lead your viistors"
+				}
+			},
+			"stories": {
+				"html": {
+					"title": "Stories - Inform and entertain your visitors"
+				}
+			},
+			"calendar": {
+				"html": {
+					"title": "Simple calendars - Cooridnate your visitors"
+				}
+			}
+		},
+		"copyright": {
+			"html": {
+				"title": "Copyright"
+			}
+		},
+		"jobs": {
+			"html": {
+				"title": "Employment Opportunities"
+			}
+		},
+		"advertising": {
+			"html": {
+				"title": "Staff"
+			}
+		},
+		"sales": {
+			"html": {
+				"title": "Staff"
+			}
+		},
+		"support": {
+			"html": {
+				"title": "Staff"
+			}
+		},
+		"terms": {
+			"html": {
+				"title": "Terms and Conditions"
+			}
+		},
+		"privacy": {
+			"html": {
+				"title": "Privacy Policy"
+			}
+		},
+		"staff": {
+			"html": {
+				"title": "Staff"
+			}
+		},
+		"mission": {
+			"html": {
+				"title": "Mission"
 			}
 		}
 	},
@@ -269,7 +358,16 @@
 			"label": "Cancel"
 		},
 		"legal": {
-			"alias": "legal"
+			"alias": "legal",
+			"privacy": {
+				"alias": "privacy"
+			},
+			"terms": {
+				"alias": "terms"
+			},
+			"copyright": {
+				"alias": "copyright"
+			}
 		},
 		"privacy": {
 			"alias": "privacy"
@@ -287,7 +385,16 @@
 			"alias": "acceptable_use"
 		},
 		"site": {
-			"alias": "site"
+			"alias": "site",
+			"staff": {
+				"alias": "staff"
+			},
+			"jobs": {
+				"alias": "jobs"
+			},
+			"mission": {
+				"alias": "mission"
+			}
 		},
 		"history": {
 			"alias": "history"
@@ -302,10 +409,64 @@
 			"alias": "mission"
 		},
 		"contact": {
-			"alias": "contact"
+			"alias": "contact",
+			"support": {
+				"alias": "support"
+			},
+			"sales": {
+				"alias": "sales"
+			},
+			"advertising": {
+				"alias": "advertising"
+			}
 		},
 		"staff": {
 			"alias": "staff"
+		},
+		"directory": {
+			"alias": "directory"
+		},
+		"webapp": {
+			"alias": "apps",
+			"profiles": {
+				"alias": "profiles"
+			},
+			"maps": {
+				"alias": "maps"
+			},
+			"stories": {
+				"alias": "stories"
+			},
+			"calendars": {
+				"alias": "calendars"
+			}
+		},
+		"profiles": {
+			"alias": "profiles"
+		},
+		"maps": {
+			"alias": "maps"
+		},
+		"support": {
+			"alias": "support"
+		},
+		"sales": {
+			"alias": "sales"
+		},
+		"advertising": {
+			"alias": "advertising"
+		},
+		"billing": {
+			"alias": "billing"
+		},
+		"shipping": {
+			"alias": "shipping"
+		},
+		"credentials": {
+			"alias": "credentials"
+		},
+		"calendars": {
+			"alias": "calendars"
 		}
 	},
 	"auth": {

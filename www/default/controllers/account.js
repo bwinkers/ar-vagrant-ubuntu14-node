@@ -1,35 +1,57 @@
-exports.auths = function(req, res) {
-        res.render('pages/account/landing', {
-            title : res.__("page.shop.landing.html.title:Shop Listings - Browse and Search")
-        });
-    };
-    
-exports.single = function(req, res) {
-        res.render('pages/shop/single', {
-            title : res.__("page.shop.single.html.title:Shop Information")
-        });
-    };
-    
-exports.manage = function(req, res) {
-        res.render('pages/shop/manage', {
-            title : res.__("page.shop.manage.html.title:Manage Shops")
-        });
-    };
-    
-exports.delete = function(req, res) {
-        res.render('pages/shop/single', {
-            title : res.__("page.shop.delete.html.title:Delete Shop")
-        });
-    };
+var arc = require('./ar-controller.js');
 
-exports.search = function(req, res) {
-        res.render('pages/shop/search', {
-            title : res.__("page.shop.search.html.title:Search Shops")
+exports.landing = function(req, res) {
+        res.render('pages/account/landing', {
+            title : res.__("page.account.landing.html.title:Member Account Management, Billing and Authorization (MAMBA)"),
+            layout: arc.vLayout(req),
+            user : req.user,
+            ar_nl1 : 'ar-nl1-' + res.__('nav.account.alias:account'),
+            ar_nl2 : null,
+            ar_nl3 : null
         });
     };
     
-exports.browse = function(req, res) {
-        res.render('pages/shop/browse', {
-            title : res.__("page.shop.browse.html.title:Browse Shops")
+exports.auths = function(req, res) {
+        res.render('pages/account/auths', {
+            title : res.__("page.account.auths.html.title:MAMBA - Login Options"),
+            layout: arc.vLayout(req),
+            user : req.user,
+            ar_nl1 : 'ar-nl1-' + res.__('nav.account.alias:account'),
+            ar_nl2 : null,
+            ar_nl3 : null
         });
     };
+    
+exports.contact = function(req, res) {
+        res.render('pages/account/contact', {
+            title : res.__("page.account.contact.html.title:MAMBA - Contact Information"),
+            layout: arc.vLayout(req),
+            user : req.user,
+            ar_nl1 : 'ar-nl1-' + res.__('nav.account.alias:account'),
+            ar_nl2 : null,
+            ar_nl3 : null
+        });
+    };
+    
+exports.billing = function(req, res) {
+        res.render('pages/account/billing', {
+            title : res.__("page.account.contact.html.title:MAMBA - Billing History"),
+            layout: arc.vLayout(req),
+            user : req.user,
+            ar_nl1 : 'ar-nl1-' + res.__('nav.account.alias:account'),
+            ar_nl2 : null,
+            ar_nl3 : null
+        });
+    };
+    
+exports.content = function(req, res) {
+        res.render('pages/account/content', {
+            title : res.__("page.account.content.landing.html.title:MAMBA - Account Content Manager (MAC)"),
+            layout: arc.vLayout(req),
+            user : req.user,
+            ar_nl1 : 'ar-nl1-' + res.__('nav.account.alias:account'),
+            ar_nl2 : null,
+            ar_nl3 : null
+        });
+    };
+    
