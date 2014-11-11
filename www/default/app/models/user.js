@@ -1,32 +1,44 @@
-// load the things we need
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
+// Load Moongoose and library to allow schema object extension
+var mongoose            = require('mongoose');
+
+// Load bcrypt library to securely encrypt password
+var bcrypt              = require('bcrypt-nodejs');
+
+// Automatically create a last modified date attribute that auto-updates
+var lastMod             = require('./lastMod');   
+
+// Person schema
+var Person              = require('./person');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
+    
+    createdDate         : { type: Date, default: Date.now },
+        
+    personId            : { type: String, default: '' },      
 
-    local            : {
-        email        : String,
-        password     : String,
+    local               : {
+        email           : String,
+        password        : String        
     },
-    facebook         : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
+    facebook            : {
+        id              : String,
+        token           : String,
+        email           : String,
+        name            : String
     },
-    twitter          : {
-        id           : String,
-        token        : String,
-        displayName  : String,
-        username     : String
+    twitter             : {
+        id              : String,
+        token           : String,
+        displayName     : String,
+        username        : String
     },
-    google           : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
-    }
+    google              : {
+        id              : String,
+        token           : String,
+        email           : String,
+        name            : String
+    },
 
 });
 
@@ -39,6 +51,8 @@ userSchema.methods.generateHash = function(password) {
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
+userSchema.plugin(lastMod);
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);

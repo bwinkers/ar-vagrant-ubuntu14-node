@@ -165,43 +165,36 @@ module.exports = function(app, passport) {
     app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.stories.alias:stories'), webapp.stories);  
     // apps/calendars
     app.get('/' + i18n.__('nav.webapp.alias:apps') + '/' + i18n.__('nav.webapp.calendars.alias:calendars'), webapp.calendars); 
+    
+// =============================================================================
+// Login Options
+// =============================================================================
+    // show the auth options page
+    app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
+        render('pages/auth/options', 'page.auth.html.title:Login Options', req, res);
+    });
 
 
 // =============================================================================
 // Member Account Routes
 // =============================================================================
 
-    // show the account landing page
+    // Require Login for ALL /account URL's
+    app.all('/' + i18n.__('nav.account.alias') + '*', requireLogin);
+
     // account
-    app.get('/' + i18n.__('nav.account.alias'), requireLogin, function(req, res) {
-        render('pages/account/landing', 'page.account.html.title:Account Management', req, res);
-    });
-    
-    // show the auth options page
-    app.get('/' + i18n.__('nav.auth.alias'), function(req, res) {
-        render('pages/auth/options', 'page.auth.html.title:Login Options', req, res);
-    });
-    
-    // show the optiosn for logging in
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), requireLogin, function(req, res) {
-        render('pages/account/auths', 'page.account.auths.html.title:Access Options', req, res);
-    });
+    app.get('/' + i18n.__('nav.account.alias'), account.landing);
 
-    // show the account contact info page
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), requireLogin, function(req, res) {
-        render('pages/account/contact', 'page.account.contact.html.title:Contact Info', req, res);
-    });
+    // account/auths
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.auths.alias'), account.auths);
 
-    // show the account billing history
-    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), requireLogin, function(req, res) {
-        res.render('pages/account/billing', {
-            user : req.user,
-            title : res.__('page.account.billing.html.title:Billing History'),
-            layout: vLayout(req)
-        });
-    });
+    // account/contact
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), account.contact);
+
+    // saccount/billing
+    app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), account.billing);
  
-    // show the account content landing page
+    // account/content
     app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.content.alias'), requireLogin, function(req, res) {
         res.render('pages/account/content', {
             user : req.user,

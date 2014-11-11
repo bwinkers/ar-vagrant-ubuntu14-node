@@ -1,3 +1,5 @@
+var ar = require('./activerules.js');
+
 exports.landing = function(req, res) {
         res.render('pages/account/landing', {
             title : res.__("page.shop.landing.html.title:Shop Listings - Browse and Search")

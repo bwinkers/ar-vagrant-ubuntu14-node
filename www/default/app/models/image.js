@@ -1,44 +1,18 @@
-// load the things we need
+// Load Moongoose 
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
-// define the schema for our user model
-var userSchema = mongoose.Schema({
+// Automatically create a last modified date attribute that auto-updates
+var lastMod = require('./lastMod');   
 
-    local            : {
-        email        : String,
-        password     : String,
-    },
-    facebook         : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
-    },
-    twitter          : {
-        id           : String,
-        token        : String,
-        displayName  : String,
-        username     : String
-    },
-    google           : {
-        id           : String,
-        token        : String,
-        email        : String,
-        name         : String
-    }
+// define the schema for our model
+var imageSchema = mongoose.Schema({
 
+    // The date this object was created
+    createdDate             : { type: Date, default: Date.now },
+    
 });
 
-// generating a hash
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-// checking if password is valid
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
+imageSchema.plugin(lastMod);
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Image', imageSchema);

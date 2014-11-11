@@ -104,11 +104,19 @@
 					"html": {
 						"title": "File Storage"
 					}
+				},
+				"html": {
+					"title": "Content and Media Library"
 				}
 			},
 			"contact": {
 				"html": {
 					"title": "Contact Info"
+				}
+			},
+			"landing": {
+				"html": {
+					"title": "Member Account Management, Billing and Authorization (MAMBA)"
 				}
 			}
 		},
@@ -526,6 +534,9 @@
 		},
 		"connect": {
 			"label": "Connect"
+		},
+		"create": {
+			"label": "account.create.label"
 		}
 	},
 	"Hello": "Hello"

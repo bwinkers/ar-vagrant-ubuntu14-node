@@ -1,3 +1,5 @@
+var ar = require('./activerules.js');
+
 var models = require('../app/models'),
     md5 = require('MD5');
 

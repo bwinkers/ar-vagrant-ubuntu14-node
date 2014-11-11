@@ -58,6 +58,9 @@ return i18n.__n.apply(this, arguments);
 // Set i18n in app for accessing in router
 app.set('i18n', i18n);
 
+// Config directory ============================================================
+app.set('configDir', __dirname + '/config');
+
 // Templating engine ===========================================================
 // HBS
 app.set('views', __dirname + '/views');

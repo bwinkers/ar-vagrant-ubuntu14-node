@@ -1,4 +1,4 @@
-var arc = require('./ar-controller.js');
+var ar = require('./activerules.js');
 
 module.exports = {
     index: function(req, res) {

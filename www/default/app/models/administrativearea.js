@@ -5,14 +5,14 @@ var mongoose = require('mongoose');
 var lastMod = require('./lastMod');   
 
 // define the schema for our model
-var organizationSchema = mongoose.Schema({
+var administrativeareaSchema = mongoose.Schema({
 
     // The date this object was created
     createdDate             : { type: Date, default: Date.now },
     
 });
 
-organizationSchema.plugin(lastMod);
+administrativeareaSchema.plugin(lastMod);
 
-// create the model for organization and expose it to our app
-module.exports = mongoose.model('Organization', organizationSchema);
+// create the model for users and expose it to our app
+module.exports = mongoose.model('AdministrativeArea', administrativeareaSchema);

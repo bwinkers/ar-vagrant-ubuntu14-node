@@ -1,9 +1,9 @@
-var arc = require('./ar-controller.js');
+var ar = require('./activerules.js');
 
 exports.landing = function(req, res) {
         res.render('pages/webapp/landing', {
             title : res.__("page.webapp.landing.html.title:Web Applications - Empower your visitors"),
-            layout: arc.vLayout(req),
+            layout: ar.vLayout(req),
             user : req.user,
             ar_nl1 : 'ar-nl1-' + res.__('nav.webapps.alias:apps'),
             ar_nl2 : null,
@@ -14,7 +14,7 @@ exports.landing = function(req, res) {
 exports.calendars = function(req, res) {
         res.render('pages/webapp/calendars', {
             title : res.__("page.webapp.calendar.html.title:Simple calendars - Cooridnate your visitors"),
-            layout: arc.vLayout(req),
+            layout: ar.vLayout(req),
             user : req.user,
             ar_nl1 : 'ar-nl1-' + res.__('nav.webapps.alias:apps'),
             ar_nl2 : 'ar-nl2-' + res.__('nav.calendars.alias:calendars'),
@@ -25,7 +25,7 @@ exports.calendars = function(req, res) {
 exports.stories = function(req, res) {
         res.render('pages/webapp/stories', {
             title : res.__("page.webapp.stories.html.title:Stories - Inform and entertain your visitors"),
-            layout: arc.vLayout(req),
+            layout: ar.vLayout(req),
             user : req.user,
             ar_nl1 : 'ar-nl1-' + res.__('nav.webapps.alias:apps'),
             ar_nl2 : 'ar-nl2-' + res.__('nav.stories.alias:stories'),
@@ -36,7 +36,7 @@ exports.stories = function(req, res) {
 exports.maps = function(req, res) {
         res.render('pages/webapp/maps', {
             title : res.__("page.webapp.maps.html.title:Maps - Lead your viistors"),
-            layout: arc.vLayout(req),
+            layout: ar.vLayout(req),
             user : req.user,
             ar_nl1 : 'ar-nl1-' + res.__('nav.webapps.alias:apps'),
             ar_nl2 : 'ar-nl2-' + res.__('nav.maps.alias:maps'),
@@ -47,7 +47,7 @@ exports.maps = function(req, res) {
 exports.profiles = function(req, res) {
         res.render('pages/webapp/profiles', {
             title : res.__("page.webapp.profiles.html.title:Profiles - Showcase your members"),
-            layout: arc.vLayout(req),
+            layout: ar.vLayout(req),
             user : req.user,
             ar_nl1 : 'ar-nl1-' + res.__('nav.webapps.alias:apps'),
             ar_nl2 : 'ar-nl2-' + res.__('nav.profiles.alias:profiles'),
