@@ -21,4 +21,4 @@ module.exports = {
 		'callbackURL'           : 'http://dev.izzup.com/auth/google/callback'
 	}
 
-};
+};  

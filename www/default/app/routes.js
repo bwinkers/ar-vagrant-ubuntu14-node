@@ -40,6 +40,8 @@ module.exports = function(app, passport) {
     var signup = require('../controllers/signup');
     var account = require('../controllers/account');
     // Account Services
+    var accountContact = require('../controllers/account/contact');
+    var accountBilling = require('../controllers/account/billing');
     var images = require('../controllers/image');
     var video = require('../controllers/video');
     var files = require('../controllers/file');
@@ -190,6 +192,9 @@ module.exports = function(app, passport) {
 
     // account/contact
     app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), account.contact);
+    app.post('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.create);
+    app.put('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.update);
+    app.delete('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.delete);
 
     // saccount/billing
     app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), account.billing);

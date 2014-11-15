@@ -111,8 +111,10 @@
 			},
 			"contact": {
 				"html": {
-					"title": "Contact Info"
-				}
+					"title": "Contact Info",
+					"description": "This information is used to prepopulate forms on the site. It will not appear on the site unless you expressly permit it while publishing content, you can override these defaults on each publication."
+				},
+				"h1": "Member Contact Information"
 			},
 			"landing": {
 				"html": {
@@ -539,5 +541,16 @@
 			"label": "account.create.label"
 		}
 	},
-	"Hello": "Hello"
+	"Hello": "Hello",
+	"form": {
+		"firstName": {
+			"label": "First Name"
+		},
+		"lastName": {
+			"label": "Last Name"
+		},
+		"save": {
+			"label": "Save"
+		}
+	}
 }

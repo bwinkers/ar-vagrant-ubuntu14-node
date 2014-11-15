@@ -16,6 +16,9 @@ var Contact             = require('./contact');
 //  Country schema
 var Country             = require('./country')
 
+// URL schema
+var Url                 = require('./url');
+
 // define the schema for our user model
 var personSchema = mongoose.Schema({
 
@@ -28,11 +31,14 @@ var personSchema = mongoose.Schema({
     // Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the Name property.
     givenName           : String,
     
-    // An alias for the person.
-    alternateName       : String,
+    // Family name. In the U.S., the last name of a Person. This can be used along with givenName instead of the Name property.
+    familyName          : String,
     
     // An additional name for a Person, can be used for a middle name.
     additionalName      : String, 
+    
+    // An alias for the person.
+    alternateName       : String,
     
     // An honorific prefix preceding a Person's name such as Dr/Mrs/Mr.
     honorificPrefix     : String,
@@ -47,7 +53,8 @@ var personSchema = mongoose.Schema({
     description         : String, 
     
     // An image of the person. This can be a URL or a fully described ImageObject.
-    image               : String,
+    image               : [Url.schema],
+    gravatar            : String,
     
     // URL of the item
     url                 : String,
@@ -74,11 +81,11 @@ var personSchema = mongoose.Schema({
     nationality         : [Country.schema], 
 
     // Concreate Relations
-   children            : [this],
-   // colleague           : [Person.schema],
-   // parent              : [Person.schema],
-   // sibling             : [Person.schema],
-   // spouse              : [Person.schema],
+    children             : [this.schema],
+    // colleague           : [Person.schema],
+    // parent              : [Person.schema],
+    // sibling             : [Person.schema],
+    // spouse              : [Person.schema],
     worksFor            : [Organization.schema],
     
     // Conceptual Relations
@@ -88,7 +95,7 @@ var personSchema = mongoose.Schema({
     // knows               : [Person.schema],
     
     // Tracking data
-    interactionCount    : String,
+    interactionCount    : String
     
 });
 
