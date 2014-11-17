@@ -7,15 +7,10 @@ var bcrypt              = require('bcrypt-nodejs');
 // Automatically create a last modified date attribute that auto-updates
 var lastMod             = require('./lastMod');   
 
-// Person schema
-var Person              = require('./person');
-
 // define the schema for our user model
 var userSchema = mongoose.Schema({
     
     createdDate         : { type: Date, default: Date.now },
-        
-    personId            : { type: String, default: '' },      
 
     local               : {
         email           : String,

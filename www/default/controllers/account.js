@@ -29,30 +29,27 @@ exports.auths = function(req, res) {
     };
     
 exports.contact = function(req, res) {
-    
-        // default contact data
-        var contactPerson = null;
-    
+        
+        console.log('here');
         // Get this 
-        Person.find({ personId: req.user.personId }, function(err, contactPerson) {
+        
+        Person.findOne({ userId: req.user._id }, function(err, contact) {
             if (err) {
                 // No Contact found
-                contactPerson = 'error';
+                console.log(err);
             } else {
-                
+                //console.log(contact);
+                res.render('pages/account/contact', {
+                    title       : res.__("page.account.contact.html.title:MAMBA - Contact Information"),
+                    layout      : ar.vLayout(req),
+                    user        : req.user,
+                    loggedIn    : req.isAuthenticated(),
+                    ar_nl1      : 'ar-nl1-' + res.__('nav.account.alias:account'),
+                    ar_nl2      : 'ar-nl2-' + res.__('nav.account.alias:account') + '-' + res.__('nav.account.contact.alias:contact'),
+                    ar_nl3      : null,
+                    contact     : JSON.stringify(contact)
+                });
             }
-        });
-
-        res.render('pages/account/contact', {
-            title       : res.__("page.account.contact.html.title:MAMBA - Contact Information"),
-            layout      : ar.vLayout(req),
-            user        : req.user,
-            loggedIn    : req.isAuthenticated(),
-            ar_nl1      : 'ar-nl1-' + res.__('nav.account.alias:account'),
-            ar_nl2      : 'ar-nl2-' + res.__('nav.account.alias:account') + '-' + res.__('nav.account.contact.alias:contact'),
-            ar_nl3      : null,
-            contact     : contactPerson
-            
         });
     };
     

@@ -4,10 +4,10 @@ var Person      = require('../../app/models/person')
 
 exports.read = function(req, res) {
     var contact = new Person({
-            first_name :req.body.firstName,
-            last_name :req.body.lastName,
-            email_address:req.body.emailAddress,
-            mobile_number :req.body.mobileNumber
+            first_name : req.body.firstName,
+            last_name : req.body.lastName,
+            email_address: req.body.emailAddress,
+            mobile_number : req.body.mobileNumber
         }).save(function(err,docs){
             if(err) throw err;
             
@@ -17,14 +17,11 @@ exports.read = function(req, res) {
     };
 
 exports.create = function(req, res) {
-    var contact = new Person({
-            first_name :req.body.firstName,
-            last_name :req.body.lastName,
-            email_address:req.body.emailAddress,
-            mobile_number :req.body.mobileNumber
-        }).save(function(err,docs){
+    var contact = new Person(req.body);
+    contact.userId = req.user._id;
+    contact.save(function(err,docs){
             if(err) throw err;
-            res.send(docs);
+            res.send(req.body);
         });
     };
     

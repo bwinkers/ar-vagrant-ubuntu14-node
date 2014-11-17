@@ -11,6 +11,7 @@
             
             <button data-bind="click: save">Save</button>
         </div>
+
         <script>
             // Connect the view model to the input fields
             var ContactViewModel = function(model) {
@@ -20,13 +21,10 @@
                 
                 this.save = function() {
                     $.ajax("/api/account/contact/", {
-                        data: {
-                            json: ko.toJSON({
-                                person: this
-                            })
-                        },
+                        data: ko.toJSON(this),
                         type: "POST",
                         dataType: 'json',
+                        contentType: 'application/json',
                         success: function(result) {
                             alert(ko.toJSON(result))
                         }
@@ -47,7 +45,11 @@
 
 <script>
     // The data as delivered in a standard format from the backend RESTful web services
-    var contactDataModel = new Backbone.Model({givenName: "Brian", familyName: "Winkers"});
+    var contactDataModel = new Backbone.Model({
+  userId: '54618b5ab4ffccc80c3f3baa',
+  givenName: 'Brianfbgfb',
+  familyName: 'Winkers',
+  _id: '5469998dae0874f90ecbe0af'});
     // Create the view model with the view data
     var contactViewModel = new ContactViewModel(contactDataModel);
     // Glue the pieces together

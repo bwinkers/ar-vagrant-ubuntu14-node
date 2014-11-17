@@ -24,6 +24,9 @@ var personSchema = mongoose.Schema({
 
     // The date this object was created
     createdDate: { type: Date, default: Date.now },
+        
+    // User ID
+    userId             : String,
 
     // The name
     name                : String,
