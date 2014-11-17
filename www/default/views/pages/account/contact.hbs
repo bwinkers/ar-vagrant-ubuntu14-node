@@ -8,6 +8,8 @@
             <p>First name: <input class='input-small pull-right' data-bind="value: givenName, valueUpdate: 'keyup'" /></p>
             <p>Last name: <input class='input-small pull-right' data-bind="value: familyName, valueUpdate: 'keyup'" /></p>
             <p>Hello, <span data-bind="text: fullName"> </span>!</p>
+            
+            <button data-bind="click: save">Save</button>
         </div>
         <script>
             // Connect the view model to the input fields
@@ -15,7 +17,23 @@
                 this.givenName = kb.observable(model, 'givenName');
                 this.familyName = kb.observable(model, 'familyName');
                 this.fullName = ko.computed((function() {return "" + (this.givenName()) + " " + (this.familyName());}), this);
+                
+                this.save = function() {
+                    $.ajax("/api/account/contact/", {
+                        data: {
+                            json: ko.toJSON({
+                                person: this
+                            })
+                        },
+                        type: "POST",
+                        dataType: 'json',
+                        success: function(result) {
+                            alert(ko.toJSON(result))
+                        }
+                    });
+                };
             };
+
         </script>
    </div>
     
