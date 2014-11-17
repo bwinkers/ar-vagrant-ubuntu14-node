@@ -10,6 +10,8 @@ exports.read = function(req, res) {
             mobile_number :req.body.mobileNumber
         }).save(function(err,docs){
             if(err) throw err;
+            
+            
             res.send(docs);
         });
     };
