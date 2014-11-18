@@ -21,12 +21,12 @@ var Url                 = require('./url');
 
 // define the schema for our user model
 var personSchema = mongoose.Schema({
-
+    
     // The date this object was created
     createdDate: { type: Date, default: Date.now },
         
     // User ID
-    userId             : String,
+    userId              : String,
 
     // The name
     name                : String,

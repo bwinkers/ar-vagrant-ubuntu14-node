@@ -195,7 +195,7 @@ module.exports = function(app, passport) {
     app.post('/api/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.create);
     app.get('/api/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.read);
     app.put('/api/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.update);
-    app.delete('/api/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.delete);
+    app.delete('/api/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.contact.alias'), accountContact.del);
 
     // saccount/billing
     app.get('/' + i18n.__('nav.account.alias') + '/' + i18n.__('nav.account.billing.alias'), account.billing);

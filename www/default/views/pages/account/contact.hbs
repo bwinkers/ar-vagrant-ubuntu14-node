@@ -7,9 +7,12 @@
         <div id='ar-account-contact'>
             <p>First name: <input class='input-small pull-right' data-bind="value: givenName, valueUpdate: 'keyup'" /></p>
             <p>Last name: <input class='input-small pull-right' data-bind="value: familyName, valueUpdate: 'keyup'" /></p>
+            <input type="hidden" data-bind="value: _id" />
             <p>Hello, <span data-bind="text: fullName"> </span>!</p>
             
             <button data-bind="click: save">Save</button>
+            
+            <button data-bind="click: del">Delete</button>
         </div>
 
         <script>
@@ -17,12 +20,25 @@
             var ContactViewModel = function(model) {
                 this.givenName = kb.observable(model, 'givenName');
                 this.familyName = kb.observable(model, 'familyName');
+                this._id = kb.observable(model, '_id');
                 this.fullName = ko.computed((function() {return "" + (this.givenName()) + " " + (this.familyName());}), this);
                 
                 this.save = function() {
                     $.ajax("/api/account/contact/", {
                         data: ko.toJSON(this),
-                        type: "POST",
+                        type: "{{editMode}}",
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(result) {
+                            alert(ko.toJSON(result))
+                        }
+                    });
+                };
+                
+                this.del = function() {
+                    $.ajax("/api/account/contact/", {
+                        data: ko.toJSON(this),
+                        type: "DELETE",
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(result) {
@@ -45,11 +61,7 @@
 
 <script>
     // The data as delivered in a standard format from the backend RESTful web services
-    var contactDataModel = new Backbone.Model({
-  userId: '54618b5ab4ffccc80c3f3baa',
-  givenName: 'Brianfbgfb',
-  familyName: 'Winkers',
-  _id: '5469998dae0874f90ecbe0af'});
+    var contactDataModel = new Backbone.Model({{{contact}}});
     // Create the view model with the view data
     var contactViewModel = new ContactViewModel(contactDataModel);
     // Glue the pieces together

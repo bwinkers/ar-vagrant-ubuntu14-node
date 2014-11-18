@@ -29,16 +29,19 @@ exports.auths = function(req, res) {
     };
     
 exports.contact = function(req, res) {
-        
-        console.log('here');
-        // Get this 
-        
+
         Person.findOne({ userId: req.user._id }, function(err, contact) {
             if (err) {
-                // No Contact found
+                // Oh oh!
                 console.log(err);
             } else {
-                //console.log(contact);
+                // If there is already a contact edit it, if not create one.
+                if(contact) {
+                    var editMode = 'PUT';
+                } else {
+                    var editMode = 'POST';
+                }
+
                 res.render('pages/account/contact', {
                     title       : res.__("page.account.contact.html.title:MAMBA - Contact Information"),
                     layout      : ar.vLayout(req),
@@ -47,6 +50,7 @@ exports.contact = function(req, res) {
                     ar_nl1      : 'ar-nl1-' + res.__('nav.account.alias:account'),
                     ar_nl2      : 'ar-nl2-' + res.__('nav.account.alias:account') + '-' + res.__('nav.account.contact.alias:contact'),
                     ar_nl3      : null,
+                    editMode    : editMode,
                     contact     : JSON.stringify(contact)
                 });
             }
